@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   name=""
+   repos="https://blaster.googlecode.com/svn"
+   revision="22"
+   last-author="luecks@gmail.com"
+   uuid="363b88b2-4a66-76b6-e03f-7ccc0b358bf7"
+   url="https://blaster.googlecode.com/svn/trunk/BlasterQt/to_copy/images"
+   committed-rev="17"
+   kind="dir"
+   committed-date="2014-01-23T11:51:32.725794Z"/>
+</wc-entries>

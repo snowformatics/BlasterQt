@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   name=""
+   repos="https://blaster.googlecode.com/svn"
+   revision="23"
+   last-author="luecks@gmail.com"
+   url="https://blaster.googlecode.com/svn/trunk/BlasterQt"
+   uuid="363b88b2-4a66-76b6-e03f-7ccc0b358bf7"
+   committed-rev="23"
+   kind="dir"
+   committed-date="2014-02-06T17:13:28.141000Z"
+   prop-time="2014-02-06T17:12:28.343000Z"/>
+<entry
+   name=".project"
+   revision="22"
+   checksum="8b6eff01457e6b89cda21a983fa001f9"
+   last-author="luecks@gmail.com"
+   committed-rev="14"
+   text-time="2013-09-12T16:12:47.891000Z"
+   kind="file"
+   committed-date="2013-09-12T16:12:47.891771Z"/>
+<entry
+   name=".pydevproject"
+   revision="22"
+   checksum="626e8ed036f9a93fb91908ca892d0cf7"
+   last-author="luecks@gmail.com"
+   committed-rev="14"
+   text-time="2013-09-12T16:12:47.891000Z"
+   kind="file"
+   committed-date="2013-09-12T16:12:47.891771Z"/>
+<entry
+   name=".settings"
+   kind="dir"/>
+<entry
+   name="BlasterQt"
+   kind="dir"/>
+<entry
+   name="blaster.ui"
+   revision="22"
+   checksum="cd284ff6856fbb6dcb1f6e59aaa69dbd"
+   last-author="luecks@gmail.com"
+   committed-rev="22"
+   text-time="2014-02-06T13:52:34.568000Z"
+   kind="file"
+   committed-date="2014-02-06T16:51:17.518000Z"/>
+<entry
+   name="blaster_main.py"
+   revision="29"
+   checksum="d5ef5ceef15ab6587f5db902d9614dad"
+   last-author="luecks@gmail.com"
+   committed-rev="29"
+   text-time="2014-02-26T13:40:11.548000Z"
+   kind="file"
+   committed-date="2014-02-26T13:43:01.302000Z"/>
+<entry
+   name="blaster_rc.py"
+   revision="22"
+   checksum="8097b2eebaf75c0d129f20fdf386222b"
+   last-author="luecks@gmail.com"
+   committed-rev="21"
+   text-time="2014-02-04T09:57:48.775000Z"
+   kind="file"
+   committed-date="2014-02-04T10:02:36.054000Z"/>
+<entry
+   name="blaster_ui.py"
+   revision="22"
+   checksum="ef70e654829d0717d06c7f40284adc08"
+   last-author="luecks@gmail.com"
+   committed-rev="22"
+   text-time="2014-02-05T13:37:03.687000Z"
+   kind="file"
+   committed-date="2014-02-06T16:51:17.518000Z"/>
+<entry
+   name="database_tools.py"
+   revision="29"
+   checksum="83efe49e52e003cc25708050d7ed9fdd"
+   last-author="luecks@gmail.com"
+   committed-rev="29"
+   text-time="2014-02-26T12:37:05.752000Z"
+   kind="file"
+   committed-date="2014-02-26T13:43:01.302000Z"/>
+<entry
+   name="db_wizard.py"
+   revision="29"
+   checksum="c82148d5fb5b882d3d03441b7565081c"
+   last-author="luecks@gmail.com"
+   committed-rev="29"
+   text-time="2014-02-26T12:35:21.415000Z"
+   kind="file"
+   committed-date="2014-02-26T13:43:01.302000Z"/>
+<entry
+   name="msvcp90.dll"
+   checksum="4c39358ebdd2ffcd9132a30e1ec31e16"
+   last-author="luecks@gmail.com"
+   committed-rev="23"
+   text-time="2014-02-06T16:58:45.190000Z"
+   kind="file"
+   committed-date="2014-02-06T17:13:28.141000Z"
+   prop-time="2014-02-06T17:12:19.350000Z"/>
+<entry
+   name="sequence_tools.py"
+   revision="25"
+   checksum="8785aa160162f953cf5f75d54f4ede26"
+   last-author="luecks@gmail.com"
+   committed-rev="25"
+   text-time="2014-02-11T15:06:17.080000Z"
+   kind="file"
+   committed-date="2014-02-13T08:58:30.655000Z"/>
+<entry
+   name="setup.py"
+   checksum="ab0c2c5340ddd0777dc4ebdab2173b23"
+   last-author="luecks@gmail.com"
+   committed-rev="23"
+   text-time="2014-02-06T17:04:00.738000Z"
+   kind="file"
+   committed-date="2014-02-06T17:13:28.141000Z"/>
+<entry
+   name="threads.py"
+   revision="29"
+   checksum="de27ac515b1ef9eb055e25060e932117"
+   last-author="luecks@gmail.com"
+   committed-rev="29"
+   text-time="2014-02-26T12:30:12.830000Z"
+   kind="file"
+   committed-date="2014-02-26T13:43:01.302000Z"/>
+<entry
+   name="to_copy"
+   kind="dir"/>
+<entry
+   name="wizard.ui"
+   revision="26"
+   checksum="608b4b7e24c32d927d112448a202de46"
+   last-author="luecks@gmail.com"
+   committed-rev="26"
+   text-time="2014-02-13T13:26:13.050000Z"
+   kind="file"
+   committed-date="2014-02-13T14:57:01.511000Z"/>
+<entry
+   name="wizard_ui.py"
+   revision="26"
+   checksum="6d98b161f49fa8159f65b7aa3cc2e264"
+   last-author="luecks@gmail.com"
+   committed-rev="26"
+   text-time="2014-02-13T13:26:17.838000Z"
+   kind="file"
+   committed-date="2014-02-13T14:57:01.511000Z"/>
+</wc-entries>

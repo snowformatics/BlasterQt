@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   name=""
+   repos="https://blaster.googlecode.com/svn"
+   revision="22"
+   last-author="luecks@gmail.com"
+   uuid="363b88b2-4a66-76b6-e03f-7ccc0b358bf7"
+   url="https://blaster.googlecode.com/svn/trunk/BlasterQt/.settings"
+   committed-rev="18"
+   kind="dir"
+   committed-date="2014-01-24T15:09:09.966810Z"/>
+<entry
+   name="org.eclipse.core.resources.prefs"
+   revision="24"
+   checksum="1b6c3f18cd351cda36977af2c4f5b832"
+   last-author="luecks@gmail.com"
+   text-time="2014-02-11T15:04:34.918000Z"
+   committed-rev="24"
+   kind="file"
+   committed-date="2014-02-11T15:06:17.839000Z"/>
+</wc-entries>

@@ -1,0 +1,464 @@
+import sys
+import os
+import tempfile
+import shutil
+import logging
+import time
+import platform
+import webbrowser
+
+import threads
+
+from PyQt4 import QtCore, QtGui, QtDeclarative
+from blaster_ui import Ui_MainWindow
+
+import database_tools
+import sequence_tools
+import db_wizard
+            
+
+class MyMainWindow(QtGui.QMainWindow):
+    def __init__(self, *args):
+        QtGui.QMainWindow.__init__(self, *args)
+        self.ui = Ui_MainWindow()
+
+        # Main paths
+        self.data_location = str(QtGui.QDesktopServices.storageLocation(QtGui.QDesktopServices.DataLocation))
+        self.home_location = str(QtGui.QDesktopServices.storageLocation(QtGui.QDesktopServices.HomeLocation))
+        self.temp_location = str(QtGui.QDesktopServices.storageLocation(QtGui.QDesktopServices.TempLocation))
+        self.app_location = self.data_location + '/BlasterQt/'
+        self.db_location = self.app_location + '/databases/'
+        self.help_location = self.app_location + '/help/'
+        self.images_location = self.app_location + '/images/'
+        
+        try:
+            self.create_folders()
+            self.copying_files()
+            # Logging
+            self.log_file = self.app_location + '/logging_blaster.txt'
+            logging.basicConfig(filename=self.log_file,level=logging.DEBUG)
+
+        except (IOError, OSError):
+            logging.debug(time.strftime("%d.%m.%Y um %H:%M:%S Uhr"))
+            logging.debug(str(platform.system()+platform.release()))
+            logging.exception('Got exception on main handler')
+            raise
+
+        self.ui.setupUi(self)
+        self.create_connects()
+        
+        self.ui.plainTextEdit_2.setFocus()
+        self.get_all_dbs()
+        
+        self.ui.statusbar.showMessage("System Status | Normal")
+       
+
+    def create_connects(self):
+        """Connect events."""
+
+        # Tab BLAST
+        self.ui.commandLinkButton_4.clicked.connect(self.open_file_blast)
+        self.ui.comboBox_6.currentIndexChanged['QString'].connect(self.change_blast_type)
+        self.ui.pushButton_3.clicked.connect(self.start_blast)
+        
+        # Tab Bowtie
+        self.ui.commandLinkButton_3.clicked.connect(self.open_file_bowtie)
+        self.ui.pushButton_4.clicked.connect(self.start_bowtie)
+        
+        # Tab RC
+        self.ui.commandLinkButton_5.clicked.connect(self.open_file_rc)
+        self.ui.commandLinkButton_6.clicked.connect(self.save_rev_compl_seq_file)
+        self.ui.pushButton_6.clicked.connect(self.start_reverse_complementation)
+        
+        # Tab Extract
+        self.ui.pushButton_5.clicked.connect(self.extract_ids)
+        
+        # Tab DB
+        self.ui.commandLinkButton_2.clicked.connect(self.delete_dbs)
+        self.ui.commandLinkButton.clicked.connect(self.start_db_wizard)    
+
+    def create_folders(self):
+        """Create important folders of Blaster in the data path."""
+        location_folders = [self.app_location, self.db_location, self.help_location, self.images_location, self.db_location + '/Fasta']
+        for folder in location_folders:
+            if not os.path.exists(folder):
+                os.mkdir(folder)
+
+    def copying_files(self):
+        """Copy important files of Blaster in the data path."""
+        to_copy_folders = os.listdir(os.getcwd() + '/to_copy/')
+        for folder in to_copy_folders:
+            to_copy_files = os.listdir(os.getcwd() + '/to_copy/' + folder)
+            for files in to_copy_files:
+                if not folder.startswith('.'):
+                    if not files.startswith('.'):
+                        if not os.path.exists(self.app_location + '/' + folder + '/' + files):
+                            shutil.copyfile(os.getcwd() + '/to_copy/' + folder + '/' + files, self.app_location + '/' + folder + '/' + files)
+
+    #================================================================================================================
+    ### File open management
+    def open_file_rc(self):
+        """Label the sequence path of RC."""
+        self.ui.plainTextEdit_6.clear()
+        self.ui.statusbar.showMessage("System Status | Normal")
+        path = str(self.open_sequence_file())
+        if path != "None":
+            self.ui.label_3.setText(path)
+            self.insert_seq(path, self.ui.plainTextEdit_5)
+            
+    def open_file_bowtie(self):
+        """Label the sequence path of Bowtie."""
+        self.ui.plainTextEdit_3.clear()
+        self.ui.statusbar.showMessage("System Status | Normal")
+        path = str(self.open_sequence_file())
+        if path != "None":
+            self.ui.label_11.setText(path)
+            self.insert_seq(path, self.ui.plainTextEdit_3)
+            
+    def open_file_blast(self):
+        """Label the sequence path of Blast."""
+        self.ui.plainTextEdit_2.clear()
+        self.ui.statusbar.showMessage("System Status | Normal")
+        path = str(self.open_sequence_file())
+        if path != "None":
+            self.ui.label_6.setText(path)
+            self.insert_seq(path, self.ui.plainTextEdit_2)
+                  
+    def insert_seq(self, file_location, plainTextEdit):
+        """Insert a sequence file content into a text edit widget."""
+        self.ui.statusbar.showMessage("System Status | Normal")
+        f_seq = open(file_location, 'r')
+        sequence = f_seq.read()
+        plainTextEdit.clear()
+        plainTextEdit.insertPlainText(sequence)
+        f_seq.close()
+    
+    def open_sequence_file(self):
+        """Open a sequence file and return the path."""
+        sequence_file_location = QtGui.QFileDialog.getOpenFileName(
+                        self,
+                        u"Open a sequence file",
+                        self.home_location,
+                        u"Sequence (*.fasta *.fas *.txt)")
+        if not sequence_file_location.isNull():
+            if os.path.exists(sequence_file_location):
+                return str(sequence_file_location)
+
+            
+    def save_validate_query_sequence(self, lable, plaintext):
+        """Save and validate sequence and fasta format."""
+        if os.path.exists(lable.text()):
+            sequence_file_location = lable.text()
+            f_query = open(sequence_file_location, 'r')
+            sequence = f_query.read()
+            f_query.close()
+        elif str(plaintext.toPlainText()) != '':
+            sequence = str(plaintext.toPlainText())
+        else:
+            sequence = None
+            self.show_info_message('Please enter a DNA sequence or upload a file!')
+        if sequence != None:
+            validate_seq = sequence_tools.validate_seq(sequence)
+            validate_fasta= sequence_tools.validate_fasta_seq(sequence)
+            if validate_seq == True or validate_fasta == True:
+                temp_seq_file = tempfile.mkstemp()
+                f_seq = open(temp_seq_file[1], 'w')
+                if validate_seq == True:
+                    f_seq.write('>My_sequence'+ '\n')
+                f_seq.write(sequence)
+                f_seq.close()
+                sequence_file_location = temp_seq_file[1]
+                return sequence_file_location
+            else:
+                self.show_info_message('Please enter a valid DNA sequence!')
+                        
+    ### File save management
+    def save_rev_compl_seq_file(self):
+        """Save reverse compl. sequence to file."""
+        try:
+            if os.path.exists(self.rev_sequence_tmp):
+                """Save a sequence file."""
+                sequence_file_location = QtGui.QFileDialog.getSaveFileName(
+                                self,
+                                u"Open a sequence file",
+                                self.home_location,
+                                u"Sequence (*.fasta *.fas *.txt)")
+                if not sequence_file_location.isNull():
+                    shutil.copy2(self.rev_sequence_tmp, sequence_file_location)
+                    if os.path.exists(sequence_file_location):
+                        self.show_info_message("Sequence(s) saved to file.")
+                    else:
+                        self.show_info_message("Sorry sequence(s) could not be saved!")
+        except AttributeError:
+            self.show_info_message('You did not start a reverse complementation.\nEnter a sequence and press the button.')
+            
+    #================================================================================================================
+    ### Database stuff
+    def get_all_dbs(self):
+        """Get all DBs and update Comboboxes."""
+        self.ui.comboBox_12.clear()
+        db_dict, table_dict = database_tools.get_all_db(str(self.db_location))
+        db_type = str(self.ui.comboBox_6.currentText())
+    
+        for db_data in db_dict.iteritems():
+            if db_data[0] == 'BOWTIE':
+                self.ui.comboBox_12.clear()
+                self.ui.comboBox_12.addItems(db_data[1])
+            if db_data[0] == 'FASTA':
+                self.ui.comboBox_14.clear()
+                self.ui.comboBox_14.addItems(db_data[1])
+            if db_data[0] == 'BLASTN':
+                if db_type == 'blastn' or db_type == 'tblastn' or db_type == 'tblastx':
+                    self.ui.comboBox_7.clear()
+                    self.ui.comboBox_7.addItems(db_data[1])
+            if db_data[0] == 'BLASTP':
+                if db_type == 'blastp' or db_type == 'blastx':
+                    self.ui.comboBox_7.clear()
+                    self.ui.comboBox_7.addItems(db_data[1])
+        
+        # Table of databases   
+        self.ui.tableWidget.clear()       
+        for values in table_dict.values():
+            max_rows = len(values)
+        self.ui.tableWidget.setRowCount(max_rows)
+        self.ui.tableWidget.setColumnCount(4) 
+        
+        horHeaders = ['Database type', 'Database name', 'Database size (KB)', 'Created'] 
+        for n, key in enumerate(table_dict.keys()): 
+            horHeaders.append(key) 
+            for m, item in enumerate(table_dict[key]):
+                newitem = QtGui.QTableWidgetItem(str(item)) 
+                if n == 0:
+                    newitem.setCheckState(QtCore.Qt.Unchecked)
+                self.ui.tableWidget.setItem(m, n, newitem) 
+        self.ui.tableWidget.setHorizontalHeaderLabels(horHeaders)
+        self.ui.tableWidget.sortItems(0)    
+        
+    def delete_dbs(self):
+        """Get all selected DBs for deleting."""
+        row_count = self.ui.tableWidget.rowCount()
+        column_count = self.ui.tableWidget.rowCount()
+        
+        db_to_delete = []
+        for i in range(row_count):
+            for x in range(column_count):
+                item = self.ui.tableWidget.item(i, x)
+                if item != None:
+                    if item.checkState() == QtCore.Qt.Checked:
+                        checked_type = self.ui.tableWidget.item(i, x).text()
+                        checked_name = self.ui.tableWidget.item(i, x+1).text()
+                        if not (checked_type, checked_name) in db_to_delete:
+                            db_to_delete.append((str(checked_type), str(checked_name)))
+        
+        if db_to_delete != []:
+            delete = QtGui.QMessageBox.question(
+                self, u"Delete database?",
+                u"Are you sure that you want to delete the database(s)?",
+                QtGui.QMessageBox.Yes, QtGui.QMessageBox.No
+                )
+            if (delete == QtGui.QMessageBox.Yes):
+                info_message = database_tools.delete_databases(db_to_delete, self.db_location)
+                #time.sleep(2)
+                #self.get_all_dbs()
+                
+                self.show_info_message(info_message[0])
+        else:
+            self.show_info_message("Please select a database!")
+        print 'ok' 
+        self.get_all_dbs()
+        
+    def start_db_wizard(self):
+        """Starts DB wizard."""
+        self.d = db_wizard.DBWizard(self)
+        self.d.show()      
+                
+    #===================================================================================================================
+    ### Program starts
+    def start_reverse_complementation(self):
+        """Reverse complemnet a sequence."""
+        self.setCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
+        self.ui.statusbar.showMessage("Starting Reverse complementation | Please wait...")
+        self.sequence_tmp = self.save_validate_query_sequence(self.ui.label_3, self.ui.plainTextEdit_5)
+        if self.sequence_tmp != None:
+            self.rev_sequence_tmp = sequence_tools.reverse_complement(self.sequence_tmp)
+            self.insert_seq(self.rev_sequence_tmp, self.ui.plainTextEdit_6)
+            self.ui.statusbar.showMessage("Reverse complementation done")
+        self.ui.label_3.setText('')
+        self.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
+        
+    def start_bowtie(self):
+        """Starts Bowtie alignment."""
+        self.ui.statusbar.showMessage("Starting BOWTIE | Please wait...")
+        self.setCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
+        self.sequence_tmp = self.save_validate_query_sequence(self.ui.label_11, self.ui.plainTextEdit_3)
+        if self.sequence_tmp != None:
+            self.searchThread = threads.BowtieThread(str(self.sequence_tmp),
+                                                             str(self.db_location),
+                                                             str(self.db_location + self.ui.comboBox_12.currentText()),
+                                                             str(self.ui.comboBox_11.currentText()))
+            self.connect(self.searchThread, QtCore.SIGNAL("threadDone(QString, QString)"), self.thread_bowtie_done)
+            self.searchThread.start()
+        self.ui.label_11.setText('')
+
+    def thread_bowtie_done(self, info_message, bowtie_file_path):
+        """Show message after thread has finished."""
+        if os.path.exists(bowtie_file_path):
+                statinfo = os.stat(bowtie_file_path)
+                if statinfo.st_size > 0:
+                    webbrowser.open(bowtie_file_path)
+                    self.ui.statusbar.showMessage("BOWTIE search done")
+                else:
+                    self.ui.statusbar.showMessage("BOWTIE search failed")
+                    self.show_info_message('Sorry, no matches found.') 
+        self.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
+                    
+    def start_blast(self):
+        """Starts BLAST alignment."""
+        self.ui.statusbar.showMessage("Starting BLAST | Please wait...")
+        self.setCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
+        self.sequence_tmp = self.save_validate_query_sequence(self.ui.label_6, self.ui.plainTextEdit_2)
+        
+        self.settings = [str(self.ui.lineEdit_6.text()),
+                         str(self.ui.lineEdit.text()),
+                         '',
+                         str(self.ui.lineEdit_7.text()),
+                         str(self.ui.comboBox.currentText()),
+                         str(self.ui.lineEdit_8.text()),
+                         str(self.ui.comboBox_9.currentText()).split(' ')[0],
+                         str(self.ui.comboBox_10.currentText()),
+                         str(self.ui.lineEdit_9.text()),
+                         str(self.ui.lineEdit_10.text()),
+                         str(self.ui.checkBox.checkState())]
+        
+        if self.sequence_tmp != None:
+            self.searchThreadBlast = threads.BlastThread(str(self.sequence_tmp),
+                                                             str(self.db_location),
+                                                             str(self.ui.comboBox_7.currentText()),
+                                                             str(self.ui.comboBox_6.currentText()),
+                                                             self.settings)
+            self.connect(self.searchThreadBlast, QtCore.SIGNAL("threadDone(QString, QString)"), self.thread_blast_done)
+            self.searchThreadBlast.start()
+        self.ui.label_6.setText('')
+
+    def thread_blast_done(self, info_message, blast_file_path):
+        """Show message after thread has finished."""
+        if os.path.exists(blast_file_path):
+                statinfo = os.stat(blast_file_path)
+                if statinfo.st_size > 0:
+                    webbrowser.open(blast_file_path)
+                    self.ui.statusbar.showMessage("BLAST done")
+                else:
+                    self.ui.statusbar.showMessage("BLAST failed")
+                    self.show_info_message('Sorry, no matches found.')  
+        self.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
+                    
+    def extract_ids(self):
+        """Extract sequences from IDs."""
+        self.setCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
+        self.ui.statusbar.showMessage("Extracting sequences | Please wait...")
+        ids = str(self.ui.plainTextEdit_4.toPlainText())
+        ignore_chars = int(self.ui.spinBox.value())
+        ignore_pos = str(self.ui.comboBox_2.currentText())
+        final_ids = []
+        for id in ids.split('\n'):
+            if ignore_chars == 0:
+                id = id
+            else:
+                if ignore_pos == 'Beginning':
+                    id = id[ignore_chars:]
+                elif ignore_pos == 'End':
+                    id = id[0:(len(id)-ignore_chars)]
+            if id != '':
+                final_ids.append(id) 
+                
+        if len(final_ids) > 0:       
+            extracted_tmp_file = sequence_tools.id_extract(final_ids, str(self.db_location), str(self.ui.comboBox_14.currentText())+'.fasta')
+            if os.path.exists(extracted_tmp_file):
+                statinfo = os.stat(extracted_tmp_file)
+                if statinfo.st_size > 0:
+                    webbrowser.open(extracted_tmp_file)
+                    self.ui.statusbar.showMessage("Sequences extracted.")
+                else:
+                    self.ui.statusbar.showMessage("Sequence extraction failed.")
+                    self.show_info_message('Sorry, no matches found.')
+        else:
+            self.show_info_message('Please enter an ID.')
+        self.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))     
+        
+    #================================================================================================================
+    ### BLAST settings
+    def change_blast_type(self):
+        """Sets the BLAST type settings."""
+        blast_type = self.ui.comboBox_6.currentText()
+        settings = sequence_tools.set_blast_settings(blast_type)
+        
+        # evalue
+        self.ui.lineEdit_6.setText(settings[0])
+        # min_length
+        #self.ui.lineEdit_2.setText(settings[2])
+        # wordsize
+        self.ui.lineEdit_7.setText(settings[3])
+        # processor
+        self.ui.lineEdit_8.setText(settings[5])
+        # min_percent
+        if settings[1] == 'enabled':
+            self.ui.lineEdit.setEnabled(False)
+        else:
+            self.ui.lineEdit.setEnabled(True)
+            self.ui.lineEdit.setText(settings[1]) 
+        # strand
+        if settings[4] == 'enabled':
+            self.ui.comboBox.setEnabled(False)
+        else:
+            self.ui.comboBox.setEnabled(True)
+            self.ui.comboBox.setCurrentIndex(settings[4])
+        # genetic_code
+        if settings[6] == 'enabled':
+            self.ui.comboBox_9.setEnabled(False)
+        else:
+            self.ui.comboBox_9.setEnabled(True)
+            self.ui.comboBox_9.setCurrentIndex(settings[6])
+        # matrix
+        if settings[7] == 'enabled':
+            self.ui.comboBox_10.setEnabled(False)
+        else:
+            self.ui.comboBox_10.setEnabled(True)
+            self.ui.comboBox_10.setCurrentIndex(settings[7])
+        # gap_open
+        if settings[8] == 'enabled':
+            self.ui.lineEdit_9.setEnabled(False)
+        else:
+            self.ui.lineEdit_9.setEnabled(True)
+            self.ui.lineEdit_9.setText(settings[8])
+        # gap_ext
+        if settings[9] == 'enabled':
+            self.ui.lineEdit_10.setEnabled(False)
+        else:
+            self.ui.lineEdit_10.setEnabled(True)
+            self.ui.lineEdit_10.setText(settings[9])
+        # ungapped
+        if settings[10] == 'enabled':
+            self.ui.checkBox.setEnabled(False)
+        else:
+            self.ui.checkBox.setEnabled(True)
+            self.ui.checkBox.setCheckState(settings[10])
+            
+        self.get_all_dbs()
+
+    def show_info_message(self, message):
+        QtGui.QMessageBox.information(self,
+                    u"Information",
+                    message
+                    )
+
+
+if __name__ == "__main__":
+    app = QtGui.QApplication(sys.argv)
+
+    QtGui.QApplication.setStyle(QtGui.QStyleFactory.create("gtk"))
+    QtGui.QApplication.setPalette(QtGui.QApplication.style().standardPalette())
+    myapp = MyMainWindow()
+    myapp.show()
+    sys.exit(app.exec_())
+   
+

@@ -1,0 +1,69 @@
+import re
+from Bio.Seq import Seq
+from Bio import SeqIO
+import tempfile
+import os
+#=====================================================================
+def validate_seq(sequence):
+    """Validate DNA sequence."""
+    sequence = sequence.strip()
+    sequence = sequence.replace(" ", "")
+    sequence.upper()
+    regex = re.compile('^[ACTGNRYSWKMBDHVEFILPQSXZ]*$', re.I)
+    if regex.search(sequence) != None:
+        return True
+    else:
+        return False
+
+def validate_fasta_seq(sequence):
+    """Validate Fasta format."""
+    sequence = sequence.replace(" ", "")
+    sequence.upper()
+    regex = re.compile('>\S*\n[ACTGNRYSWKMBDHVEFILPQSXZ]*', re.MULTILINE)
+    if regex.search(sequence) != None:
+        return True
+    else:
+        return False
+     
+def reverse_complement(sequence_file_location):
+    """Reverse_complement a sequence."""
+    f_fasta = open(sequence_file_location, "r")
+    temp_seq_file = tempfile.mkstemp()
+    f_seq = open(temp_seq_file[1], 'w')
+    for seq_record in SeqIO.parse(f_fasta, "fasta"):
+        id = seq_record.id
+        seq = str(seq_record.seq)
+        sequence_reverse = str(Seq(seq).reverse_complement())
+        f_seq.write('>'+ str(id) + '\n')
+        f_seq.write(sequence_reverse)
+        f_seq.write('\n')
+        sequence_file_location = temp_seq_file[1]
+    f_fasta.close()
+    f_seq.close()
+    return sequence_file_location
+
+def id_extract(ids, db_location, database_file):
+    os.chdir(db_location)
+    temp_seq_file = tempfile.mkstemp()                  
+    seqiter = SeqIO.parse(open(database_file), 'fasta') 
+    SeqIO.write((seq for seq in seqiter if seq.id in ids), temp_seq_file[1]+'.txt', "fasta")
+    return temp_seq_file[1]+'.txt'
+
+def set_blast_settings(blast_type):
+    
+    # Settings:
+    # evalue, min_percent, min_length, wordsize, strand, processor, genetic_code, matrix, gap_open, gap_ext, ungapped
+    
+    if blast_type == 'blastn':
+        settings = ['1e-10', '80', '100', '11', 0, '1', 'enabled', 'enabled', '5', '2', 2]
+    elif blast_type == 'blastp':
+        settings = ['1e-10', 'enabled', '100', '3', 'enabled', '1', 'enabled', 4, '9', '1', 'enabled']
+    elif blast_type == 'blastx':
+        settings = ['1e-10', 'enabled', '100', '3', 0, '1', 0, 4, '11', '1', 'enabled']
+    elif blast_type == 'tblastn':
+        settings = ['1e-10', 'enabled', '100', '3', 'enabled', '1', 'enabled', 4, '11', '1', 'enabled']
+    elif blast_type == 'tblastx':
+        settings = ['1e-10', 'enabled', '100', '3', 0, '1', 0, 4, 'enabled', 'enabled', 'enabled']
+        
+    return settings
+        

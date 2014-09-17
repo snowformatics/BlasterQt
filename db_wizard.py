@@ -1,0 +1,146 @@
+
+import os
+import time
+
+import database_tools
+import threads
+
+from PyQt4 import QtCore, QtGui, QtDeclarative
+
+from wizard_ui import Ui_wizard
+ 
+class DBWizard(QtGui.QWizard):
+    def __init__(self, mainWindow):
+        QtGui.QWizard.__init__(self)
+        self.ui_wizard = Ui_wizard()
+        self.ui_wizard.setupUi(self)
+        
+        self.data_location = str(QtGui.QDesktopServices.storageLocation(QtGui.QDesktopServices.DataLocation))
+        self.app_location = self.data_location + '/BlasterQt/'
+        self.home_location = str(QtGui.QDesktopServices.storageLocation(QtGui.QDesktopServices.HomeLocation))
+        self.db_location = self.app_location + '/databases/'
+        
+        self.currentIdChanged.connect(self.getdata)
+        self.ui_wizard.commandLinkButton_5.clicked.connect(self.open_sequence_file)
+        self.mainWindow = mainWindow
+        
+    def getdata(self):
+        self.iambusy = False
+        if self.currentId() == 3:
+            db_list = []
+            blastn_db = self.ui_wizard.checkBox.checkState()
+            blastp_db = self.ui_wizard.checkBox_2.checkState()
+            bowtie_db = self.ui_wizard.checkBox_3.checkState()
+            fasta_db = self.ui_wizard.checkBox_4.checkState()
+            file_path = self.ui_wizard.label_5.text()
+            db_name = self.ui_wizard.lineEdit.text()
+        
+            if blastn_db == 2:
+                db_list.append('blastn_db')
+            if blastp_db == 2:
+                db_list.append('blastp_db')
+            if bowtie_db == 2:
+                db_list.append('bowtie_db')
+            if fasta_db == 2:
+                db_list.append('fasta_db') 
+            
+            if len(db_list) == 0:
+                db = False
+            else:
+                db = True
+            if not os.path.exists(file_path):
+                file_pa = False
+            else:
+                file_pa = True
+            if db_name == '':
+                name = False
+            else:
+                name = True
+            
+            if db == True and file_pa == True and name == True:
+                self.step = 100/len(db_list)
+                self.value = 0
+                self.button(self.FinishButton).setEnabled(False)
+                self.ui_wizard.progressBar.setValue(self.value)
+                self.setCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
+                for db_to_create in db_list:
+                    self.value += self.step
+                    if db_to_create == 'fasta_db':
+                        self.ui_wizard.label_3.setText('Creating FASTA database. Please wait...')
+                        self.ui_wizard.progressBar.setValue(self.value)
+                        self.FastaDBThread = threads.CreateDBThread(
+                                                                    str(file_path),
+                                                                    str(self.db_location),
+                                                                    str(db_name),
+                                                                    "FASTA")
+                        self.connect(self.FastaDBThread, QtCore.SIGNAL("threadDone(QString, QString)"), self.thread_done)
+                        self.FastaDBThread.start()
+                        self.FastaDBThread.wait()
+                        
+                    if db_to_create == 'bowtie_db':
+                        self.ui_wizard.label_3.setText('Creating Bowtie database. Please wait...')
+                        self.ui_wizard.progressBar.setValue(self.value)
+                        self.BowtieDBThread = threads.CreateDBThread(
+                                                                    str(file_path),
+                                                                    str(self.db_location),
+                                                                    str(db_name),
+                                                                    "BOWTIE")
+                        self.connect(self.BowtieDBThread, QtCore.SIGNAL("threadDone(QString, QString)"), self.thread_done)
+                        self.BowtieDBThread.start()
+                        self.BowtieDBThread.wait()
+                        
+                    if db_to_create == 'blastn_db':
+                        self.ui_wizard.label_3.setText('Creating BLAST DNA database. Please wait...')
+                        self.ui_wizard.progressBar.setValue(self.value)
+                        self.BLASTNDBThread = threads.CreateDBThread(
+                                                                    str(file_path),
+                                                                    str(self.db_location),
+                                                                    str(db_name),
+                                                                    "BLASTN")
+                        self.connect(self.BLASTNDBThread, QtCore.SIGNAL("threadDone(QString, QString)"), self.thread_done)
+                        self.BLASTNDBThread.start()
+                        self.BLASTNDBThread.wait()
+                         
+                    if db_to_create == 'blastp_db':
+                        self.ui_wizard.label_3.setText('Creating BLAST Protein database. Please wait...')
+                        self.ui_wizard.progressBar.setValue(self.value)
+                        self.BLASTPDBThread = threads.CreateDBThread(
+                                                                    str(file_path),
+                                                                    str(self.db_location),
+                                                                    str(db_name),
+                                                                    "BLASTP")
+                        self.connect(self.BLASTPDBThread, QtCore.SIGNAL("threadDone(QString, QString)"), self.thread_done)
+                        self.BLASTPDBThread.start()
+                        self.BLASTPDBThread.wait()
+
+                self.button(self.FinishButton).setEnabled(True)
+                self.ui_wizard.progressBar.setValue(100)
+                self.ui_wizard.label_3.setText('All databases successfully created!')
+                
+            else:
+                self.button(self.FinishButton).setEnabled(False)
+                self.show_info_message("Please choose a database type, select a source file\nand enter a database name.")
+            self.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
+        
+                
+    def thread_done(self, info_message, bowtie_file_path):
+        """Show message after thread has finished."""
+        self.mainWindow.get_all_dbs()           
+    
+    def open_sequence_file(self):
+        """Open a sequence file and return the path."""
+        sequence_file_location = QtGui.QFileDialog.getOpenFileName(
+                        self,
+                        u"Open a sequence file",
+                        self.home_location,
+                        u"Sequence (*.fasta *.fas *.txt)")
+        if not sequence_file_location.isNull():
+            if os.path.exists(sequence_file_location):
+                file_path = str(sequence_file_location)
+                self.ui_wizard.label_5.setText(file_path)
+                
+    def show_info_message(self, message):
+        QtGui.QMessageBox.information(self,
+                    u"Information",
+                    message
+                    )

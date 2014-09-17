@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   repos="https://blaster.googlecode.com/svn"
+   name=""
+   revision="22"
+   last-author="luecks@gmail.com"
+   url="https://blaster.googlecode.com/svn/trunk/BlasterQt/to_copy"
+   uuid="363b88b2-4a66-76b6-e03f-7ccc0b358bf7"
+   committed-rev="22"
+   kind="dir"
+   committed-date="2014-02-06T16:51:17.518106Z"/>
+<entry
+   name="databases"
+   kind="dir"/>
+<entry
+   name="help"
+   kind="dir"/>
+<entry
+   name="images"
+   kind="dir"/>
+</wc-entries>
