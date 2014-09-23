@@ -136,8 +136,8 @@ def convert_seq_fomats(in_file, conversion_type):
     if conversion_type == "fasta_to_excel":
         seq_iter = SeqIO.parse(open(in_file), 'fasta')
         writer = csv.writer(open(temp_out[1] + ".csv", "wb"))
+        #writer.writerow(["Sequence ID", "Sequence"])
         for seq in seq_iter:
-            writer.writerow(["Sequence ID", "Sequence"])
             writer.writerow([seq.id, str(seq.seq)])
         return temp_out[1] + ".csv"
     else:
@@ -149,7 +149,6 @@ def convert_seq_fomats(in_file, conversion_type):
             reader = csv.reader(f_in, dialect)
             f_out = open(temp_out[1] + '.txt', 'w')
             for row in reader:
-                print row
                 f_out.write('>' + row[0:2][0] + '\n' + row[0:2][1] + '\n')
             f_out.close()
             return temp_out[1] + '.txt'

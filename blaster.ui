@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>965</width>
-    <height>944</height>
+    <width>962</width>
+    <height>815</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -50,8 +50,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>945</width>
-         <height>822</height>
+         <width>925</width>
+         <height>818</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -69,7 +69,7 @@
            </font>
           </property>
           <property name="currentIndex">
-           <number>4</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="tab">
            <attribute name="title">
@@ -78,10 +78,10 @@
            <widget class="QWidget" name="layoutWidget">
             <property name="geometry">
              <rect>
-              <x>20</x>
-              <y>20</y>
+              <x>0</x>
+              <y>0</y>
               <width>651</width>
-              <height>711</height>
+              <height>671</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -166,14 +166,14 @@
                    <property name="maximumSize">
                     <size>
                      <width>150</width>
-                     <height>50</height>
+                     <height>40</height>
                     </size>
                    </property>
                    <property name="text">
                     <string>Open File</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="../../../../Python/Resources/blaster.qrc">
+                    <iconset resource="../Resources/blaster.qrc">
                      <normaloff>:/Icons/Filesystem-folder-grey-open-icon.png</normaloff>:/Icons/Filesystem-folder-grey-open-icon.png</iconset>
                    </property>
                    <property name="iconSize">
@@ -190,7 +190,7 @@
                 <property name="geometry">
                  <rect>
                   <x>10</x>
-                  <y>250</y>
+                  <y>240</y>
                   <width>395</width>
                   <height>66</height>
                  </rect>
@@ -278,11 +278,17 @@
                <widget class="QPushButton" name="pushButton_3">
                 <property name="geometry">
                  <rect>
-                  <x>450</x>
-                  <y>260</y>
+                  <x>470</x>
+                  <y>240</y>
                   <width>120</width>
-                  <height>50</height>
+                  <height>60</height>
                  </rect>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>120</width>
+                  <height>60</height>
+                 </size>
                 </property>
                 <property name="maximumSize">
                  <size>
@@ -324,7 +330,7 @@
                  <rect>
                   <x>10</x>
                   <y>20</y>
-                  <width>561</width>
+                  <width>684</width>
                   <height>301</height>
                  </rect>
                 </property>
@@ -467,6 +473,12 @@
                   <widget class="QComboBox" name="comboBox_9">
                    <property name="enabled">
                     <bool>true</bool>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>300</width>
+                     <height>16777215</height>
+                    </size>
                    </property>
                    <item>
                     <property name="text">
@@ -668,8 +680,8 @@
            <widget class="QGroupBox" name="groupBox_3">
             <property name="geometry">
              <rect>
-              <x>20</x>
-              <y>20</y>
+              <x>10</x>
+              <y>10</y>
               <width>681</width>
               <height>321</height>
              </rect>
@@ -750,14 +762,14 @@
                 <property name="maximumSize">
                  <size>
                   <width>150</width>
-                  <height>50</height>
+                  <height>40</height>
                  </size>
                 </property>
                 <property name="text">
                  <string>Open File</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="../../../../Python/Resources/blaster.qrc">
+                 <iconset resource="../Resources/blaster.qrc">
                   <normaloff>:/Icons/Filesystem-folder-grey-open-icon.png</normaloff>:/Icons/Filesystem-folder-grey-open-icon.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -864,11 +876,17 @@
             <widget class="QPushButton" name="pushButton_4">
              <property name="geometry">
               <rect>
-               <x>460</x>
-               <y>250</y>
+               <x>470</x>
+               <y>240</y>
                <width>120</width>
-               <height>50</height>
+               <height>60</height>
               </rect>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>120</width>
+               <height>60</height>
+              </size>
              </property>
              <property name="maximumSize">
               <size>
@@ -898,7 +916,7 @@
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>20</y>
+              <y>10</y>
               <width>631</width>
               <height>300</height>
              </rect>
@@ -934,11 +952,17 @@
             <widget class="QPushButton" name="pushButton_5">
              <property name="geometry">
               <rect>
-               <x>450</x>
-               <y>210</y>
+               <x>480</x>
+               <y>200</y>
                <width>120</width>
-               <height>50</height>
+               <height>60</height>
               </rect>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>120</width>
+               <height>60</height>
+              </size>
              </property>
              <property name="maximumSize">
               <size>
@@ -1052,9 +1076,9 @@
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>20</y>
+              <y>10</y>
               <width>631</width>
-              <height>371</height>
+              <height>321</height>
              </rect>
             </property>
             <property name="minimumSize">
@@ -1091,7 +1115,7 @@
                <x>10</x>
                <y>180</y>
                <width>601</width>
-               <height>181</height>
+               <height>61</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_8">
@@ -1107,16 +1131,6 @@
               <property name="bottomMargin">
                <number>5</number>
               </property>
-              <item row="2" column="0">
-               <widget class="QRadioButton" name="radioButton_2">
-                <property name="text">
-                 <string>Reverse complement</string>
-                </property>
-                <property name="checked">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
               <item row="0" column="0">
                <widget class="QLabel" name="label_3">
                 <property name="text">
@@ -1124,26 +1138,25 @@
                 </property>
                </widget>
               </item>
-              <item row="3" column="0">
-               <widget class="QRadioButton" name="radioButton">
-                <property name="text">
-                 <string>Reverse only</string>
-                </property>
-               </widget>
-              </item>
               <item row="0" column="1">
                <widget class="QPushButton" name="pushButton_8">
+                <property name="minimumSize">
+                 <size>
+                  <width>150</width>
+                  <height>40</height>
+                 </size>
+                </property>
                 <property name="maximumSize">
                  <size>
                   <width>150</width>
-                  <height>50</height>
+                  <height>40</height>
                  </size>
                 </property>
                 <property name="text">
                  <string>Open File</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="../../../../Python/Resources/blaster.qrc">
+                 <iconset resource="../Resources/blaster.qrc">
                   <normaloff>:/Icons/Filesystem-folder-grey-open-icon.png</normaloff>:/Icons/Filesystem-folder-grey-open-icon.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -1155,43 +1168,79 @@
                </widget>
               </item>
               <item row="1" column="0">
-               <spacer name="horizontalSpacer">
+               <widget class="Line" name="line_6">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
+               </widget>
               </item>
-              <item row="3" column="1">
-               <widget class="QPushButton" name="pushButton_6">
-                <property name="minimumSize">
-                 <size>
-                  <width>150</width>
-                  <height>50</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>250</width>
-                  <height>50</height>
-                 </size>
-                </property>
-                <property name="font">
-                 <font>
-                  <pointsize>12</pointsize>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>Start</string>
+              <item row="1" column="1">
+               <widget class="Line" name="line_7">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
                 </property>
                </widget>
               </item>
              </layout>
+            </widget>
+            <widget class="QWidget" name="gridLayoutWidget">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>240</y>
+               <width>381</width>
+               <height>52</height>
+              </rect>
+             </property>
+             <layout class="QGridLayout" name="gridLayout">
+              <item row="0" column="0">
+               <widget class="QRadioButton" name="radioButton_2">
+                <property name="text">
+                 <string>Reverse complement</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QRadioButton" name="radioButton">
+                <property name="text">
+                 <string>Reverse only</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+            <widget class="QPushButton" name="pushButton_6">
+             <property name="geometry">
+              <rect>
+               <x>470</x>
+               <y>240</y>
+               <width>120</width>
+               <height>60</height>
+              </rect>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>120</width>
+               <height>60</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>120</width>
+               <height>60</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Start</string>
+             </property>
             </widget>
            </widget>
           </widget>
@@ -1203,9 +1252,9 @@
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>20</y>
+              <y>10</y>
               <width>631</width>
-              <height>301</height>
+              <height>311</height>
              </rect>
             </property>
             <property name="minimumSize">
@@ -1241,8 +1290,8 @@
               <rect>
                <x>10</x>
                <y>180</y>
-               <width>421</width>
-               <height>111</height>
+               <width>601</width>
+               <height>59</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout_10">
@@ -1258,27 +1307,10 @@
               <property name="bottomMargin">
                <number>5</number>
               </property>
-              <item row="1" column="0">
-               <widget class="QRadioButton" name="radioButton_3">
-                <property name="text">
-                 <string>Convert Fasta -&gt; CSV</string>
-                </property>
-                <property name="checked">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
               <item row="0" column="0">
                <widget class="QLabel" name="label_15">
                 <property name="text">
                  <string>No file selected.</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0">
-               <widget class="QRadioButton" name="radioButton_4">
-                <property name="text">
-                 <string>Convert CSV -&gt; Fasta</string>
                 </property>
                </widget>
               </item>
@@ -1294,7 +1326,7 @@
                  <string>Open File</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="../../../../Python/Resources/blaster.qrc">
+                 <iconset resource="../Resources/blaster.qrc">
                   <normaloff>:/Icons/Filesystem-folder-grey-open-icon.png</normaloff>:/Icons/Filesystem-folder-grey-open-icon.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -1305,32 +1337,84 @@
                 </property>
                </widget>
               </item>
+              <item row="1" column="0">
+               <widget class="Line" name="line_8">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="Line" name="line_9">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+               </widget>
+              </item>
              </layout>
             </widget>
-            <widget class="QPushButton" name="pushButton_7">
+            <widget class="QWidget" name="gridLayoutWidget_2">
              <property name="geometry">
               <rect>
-               <x>460</x>
-               <y>230</y>
-               <width>120</width>
-               <height>50</height>
+               <x>10</x>
+               <y>240</y>
+               <width>351</width>
+               <height>52</height>
               </rect>
              </property>
-             <property name="maximumSize">
-              <size>
-               <width>250</width>
-               <height>50</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <pointsize>12</pointsize>
-              </font>
-             </property>
-             <property name="text">
-              <string>Start</string>
-             </property>
+             <layout class="QGridLayout" name="gridLayout_2">
+              <item row="0" column="0">
+               <widget class="QRadioButton" name="radioButton_4">
+                <property name="text">
+                 <string>Convert CSV -&gt; Fasta</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QRadioButton" name="radioButton_3">
+                <property name="text">
+                 <string>Convert Fasta -&gt; CSV</string>
+                </property>
+                <property name="checked">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </widget>
+           </widget>
+           <widget class="QPushButton" name="pushButton_7">
+            <property name="geometry">
+             <rect>
+              <x>480</x>
+              <y>250</y>
+              <width>120</width>
+              <height>60</height>
+             </rect>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>120</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>120</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Start</string>
+            </property>
            </widget>
           </widget>
           <widget class="QWidget" name="tab_5">
@@ -1340,8 +1424,8 @@
            <widget class="QTableWidget" name="tableWidget">
             <property name="geometry">
              <rect>
-              <x>20</x>
-              <y>50</y>
+              <x>10</x>
+              <y>10</y>
               <width>791</width>
               <height>291</height>
              </rect>
@@ -1377,7 +1461,7 @@
             <property name="geometry">
              <rect>
               <x>20</x>
-              <y>380</y>
+              <y>320</y>
               <width>221</width>
               <height>61</height>
              </rect>
@@ -1386,7 +1470,7 @@
              <string>Create new database</string>
             </property>
             <property name="icon">
-             <iconset resource="../../../../Python/Resources/blaster.qrc">
+             <iconset resource="../Resources/blaster.qrc">
               <normaloff>:/Icons/Action-db-add-icon2.png</normaloff>:/Icons/Action-db-add-icon2.png</iconset>
             </property>
             <property name="iconSize">
@@ -1400,7 +1484,7 @@
             <property name="geometry">
              <rect>
               <x>20</x>
-              <y>440</y>
+              <y>380</y>
               <width>185</width>
               <height>61</height>
              </rect>
@@ -1409,7 +1493,7 @@
              <string>Delete database</string>
             </property>
             <property name="icon">
-             <iconset resource="../../../../Python/Resources/blaster.qrc">
+             <iconset resource="../Resources/blaster.qrc">
               <normaloff>:/Icons/Action-db-remove-icon2.png</normaloff>:/Icons/Action-db-remove-icon2.png</iconset>
             </property>
             <property name="iconSize">
@@ -1433,7 +1517,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>965</width>
+     <width>962</width>
      <height>24</height>
     </rect>
    </property>
@@ -1519,7 +1603,7 @@
   </action>
  </widget>
  <resources>
-  <include location="../../../../Python/Resources/blaster.qrc"/>
+  <include location="../Resources/blaster.qrc"/>
  </resources>
  <connections/>
 </ui>

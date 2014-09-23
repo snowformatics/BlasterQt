@@ -19,6 +19,16 @@ import db_wizard
 # pyrcc4 blaster.qrc > blaster_rc.py
 # pyuic4 blaster.ui > blaster_ui.py
 
+class MyPopup(QtGui.QWidget):
+    def __init__(self, images_location):
+        QtGui.QWidget.__init__(self)
+
+        self.setWindowTitle('BlasterQt v. 1.0.3')
+        self.images_location = images_location
+        label = QtGui.QLabel(self)
+        pixmap = QtGui.QPixmap(self.images_location + "about.png")
+        label.setPixmap(pixmap)
+
 
 class MyMainWindow(QtGui.QMainWindow):
     def __init__(self, *args):
@@ -33,6 +43,7 @@ class MyMainWindow(QtGui.QMainWindow):
         self.app_location = self.data_location + '/BlasterQt/'
         self.db_location = self.app_location + '/databases/'
         self.images_location = self.app_location + '/images/'
+
         try:
             self.create_folders()
             self.copying_files()
@@ -79,6 +90,7 @@ class MyMainWindow(QtGui.QMainWindow):
         # Tab DB
         self.ui.commandLinkButton_2.clicked.connect(self.delete_dbs)
         self.ui.commandLinkButton.clicked.connect(self.start_db_wizard)
+        self.ui.tableWidget.setColumnWidth(3, 200)
 
         # TB Converter
         self.ui.pushButton_9.clicked.connect(self.open_file_and_insert_seq)
@@ -497,22 +509,13 @@ class MyMainWindow(QtGui.QMainWindow):
 
     def show_about_message(self):
         """Shows about box."""
+        self.w = MyPopup(self.images_location)
+        self.w.setGeometry(QtCore.QRect(100, 100, 640, 350))
+        self.w.show()
 
-        message = """BlasterQt v. 1.0.2 <br/>
-                     (C) 2014 Stefanie Lueck <br/>
-                     CC-BY-NC License <br/>
-                     If you have any comments or problems please contact the author via labtools[at]ipk-gatersleben.de
-                    <br/>
-                     <a href=\"http://labtools.ipk-gatersleben.de\">Homepage</a>"""
-
-        QtGui.QMessageBox.about(self,
-                                "About BlasterQt",
-                                """<p style="font-family: 'verdana'; font-size:10pt; color:#2E9AFE">"""
-                                      + message + """</p>""")
 
     def show_help(self):
         """Show help."""
-
         webbrowser.open("labtools.ipk-gatersleben.de/help/BlasterQt/BlasterQt.html")
 
 
@@ -524,5 +527,8 @@ if __name__ == "__main__":
     myapp = MyMainWindow()
     myapp.show()
     sys.exit(app.exec_())
+
+
+
    
 
