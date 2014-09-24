@@ -16,6 +16,7 @@ class DBWizard(QtGui.QWizard):
         self.ui_wizard.setupUi(self)
 
         self.data_location = str(QtGui.QDesktopServices.storageLocation(QtGui.QDesktopServices.DataLocation))
+        self.data_location = self.data_location.split('Local')[0] + '/Local/'
         self.app_location = self.data_location + '/BlasterQt/'
         self.home_location = str(QtGui.QDesktopServices.storageLocation(QtGui.QDesktopServices.HomeLocation))
         self.db_location = self.app_location + '/databases/'

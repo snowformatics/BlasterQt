@@ -38,11 +38,14 @@ class MyMainWindow(QtGui.QMainWindow):
 
         # Main paths
         self.data_location = str(QtGui.QDesktopServices.storageLocation(QtGui.QDesktopServices.DataLocation))
+        self.data_location = self.data_location.split('Local')[0] + '/Local/'
         self.home_location = str(QtGui.QDesktopServices.storageLocation(QtGui.QDesktopServices.HomeLocation))
         self.temp_location = str(QtGui.QDesktopServices.storageLocation(QtGui.QDesktopServices.TempLocation))
         self.app_location = self.data_location + '/BlasterQt/'
         self.db_location = self.app_location + '/databases/'
         self.images_location = self.app_location + '/images/'
+
+        #print self.data_location.split('Local')[0] + '/Local/'
 
         try:
             self.create_folders()
