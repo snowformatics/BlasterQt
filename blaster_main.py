@@ -186,7 +186,6 @@ class MyMainWindow(QtGui.QMainWindow):
 
         # Validate and create temp file
         if sequence is not None:
-
             # For sequences allowed multiple fasta format
             if validate_format == 'multi':
                 validate = sequence_tools.validate_fasta_seq(sequence)
