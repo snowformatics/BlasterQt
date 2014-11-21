@@ -5,6 +5,7 @@ from Bio import SeqIO
 import tempfile
 import os
 import csv
+import datetime
 #=====================================================================
 
 def validate_seq(sequence):
@@ -193,3 +194,31 @@ def convert_seq_fomats(in_file, conversion_type):
             return temp_out[1] + '.txt'
         except IndexError:
             return None
+
+def convert_multi_to_single(file_directory):
+    """Converts a multi fasta file to several single fasta files."""
+    all_files = os.listdir(file_directory)
+    for file_name in all_files:
+        f_multi = open(file_directory + '/' + file_name, "r")
+        for seq_record in SeqIO.parse(f_multi, "fasta"):
+            seq_id = seq_record.id
+            sequence = str(seq_record.seq)
+            save_seq_file(seq_id, sequence, file_directory)
+
+def convert_single_to_multi(file_directory):
+    """Converts several single fasta files to one multi fasta file."""
+    all_files = os.listdir(file_directory)
+    merged_file = ''
+    for file_name in all_files:
+        f_single = open(file_directory + '/' + file_name, "r")
+        data = f_single.read() + '\n'
+        merged_file += data
+    date = datetime.datetime.now()
+    save_seq_file(('multi_fasta_' + str(date).split(' ')[0]), merged_file, file_directory)
+
+
+def save_seq_file(seq_id, sequence, directory):
+    """Saves a sequence as fasta format into a file."""
+    f_fasta = open(directory + '/'+ seq_id + '.fasta', 'w')
+    f_fasta.write(str(sequence))
+    f_fasta.close()

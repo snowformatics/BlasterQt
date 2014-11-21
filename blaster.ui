@@ -82,7 +82,7 @@
           </property>
           <property name="iconSize">
            <size>
-            <width>48</width>
+            <width>52</width>
             <height>64</height>
            </size>
           </property>
@@ -95,7 +95,7 @@
           <widget class="QWidget" name="tab">
            <attribute name="icon">
             <iconset resource="blaster.qrc">
-             <normaloff>:/Icons/to_copy/images/text2985.png</normaloff>:/Icons/to_copy/images/text2985.png</iconset>
+             <normaloff>:/Icons/to_copy/images/01.png</normaloff>:/Icons/to_copy/images/01.png</iconset>
            </attribute>
            <attribute name="title">
             <string/>
@@ -203,7 +203,7 @@
                     <string>Open File</string>
                    </property>
                    <property name="icon">
-                    <iconset resource="../Resources/blaster.qrc">
+                    <iconset>
                      <normaloff>:/Icons/Filesystem-folder-grey-open-icon.png</normaloff>:/Icons/Filesystem-folder-grey-open-icon.png</iconset>
                    </property>
                    <property name="iconSize">
@@ -761,7 +761,7 @@
           <widget class="QWidget" name="tab_7">
            <attribute name="icon">
             <iconset resource="blaster.qrc">
-             <normaloff>:/Icons/to_copy/images/text8.png</normaloff>:/Icons/to_copy/images/text8.png</iconset>
+             <normaloff>:/Icons/to_copy/images/02.png</normaloff>:/Icons/to_copy/images/02.png</iconset>
            </attribute>
            <attribute name="title">
             <string/>
@@ -855,7 +855,7 @@
                  <string>Open File</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="../Resources/blaster.qrc">
+                 <iconset>
                   <normaloff>:/Icons/Filesystem-folder-grey-open-icon.png</normaloff>:/Icons/Filesystem-folder-grey-open-icon.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -1516,7 +1516,7 @@
               <x>20</x>
               <y>10</y>
               <width>631</width>
-              <height>361</height>
+              <height>341</height>
              </rect>
             </property>
             <property name="minimumSize">
@@ -1599,7 +1599,7 @@
                  <string>Open File</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="../Resources/blaster.qrc">
+                 <iconset>
                   <normaloff>:/Icons/Filesystem-folder-grey-open-icon.png</normaloff>:/Icons/Filesystem-folder-grey-open-icon.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -1632,7 +1632,7 @@
                <x>10</x>
                <y>240</y>
                <width>381</width>
-               <height>108</height>
+               <height>91</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="gridLayout">
@@ -1657,13 +1657,6 @@
                <widget class="QRadioButton" name="radioButton_7">
                 <property name="text">
                  <string>Translate</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="0">
-               <widget class="QRadioButton" name="radioButton_8">
-                <property name="text">
-                 <string>Reverse Translate</string>
                 </property>
                </widget>
               </item>
@@ -1792,7 +1785,7 @@
                  <string>Open File</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="../Resources/blaster.qrc">
+                 <iconset>
                   <normaloff>:/Icons/Filesystem-folder-grey-open-icon.png</normaloff>:/Icons/Filesystem-folder-grey-open-icon.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -2116,7 +2109,7 @@
                  <string>Open File</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="../Resources/blaster.qrc">
+                 <iconset>
                   <normaloff>:/Icons/Filesystem-folder-grey-open-icon.png</normaloff>:/Icons/Filesystem-folder-grey-open-icon.png</iconset>
                 </property>
                 <property name="iconSize">
@@ -2351,7 +2344,6 @@
   </action>
  </widget>
  <resources>
-  <include location="../Resources/blaster.qrc"/>
   <include location="blaster.qrc"/>
  </resources>
  <connections/>

@@ -105,7 +105,7 @@ class MyMainWindow(QtGui.QMainWindow):
 
         # TB Converter
         self.ui.pushButton_9.clicked.connect(self.open_file_and_insert_seq)
-        self.ui.pushButton_7.clicked.connect(self.convert_fasta_excel)
+        self.ui.pushButton_7.clicked.connect(self.start_format_convert)
 
         # Menu
         self.ui.actionAbout.triggered.connect(self.show_about_message)
@@ -299,23 +299,31 @@ class MyMainWindow(QtGui.QMainWindow):
                 
     #===================================================================================================================
     ### Program start
-    def convert_fasta_excel(self):
-        """Converts a fasta to excel sequence file or vice versa."""
+    def start_format_convert(self):
+        """Converts a fasta to excel sequence file or vice versa amd multi/single fasta."""
         if self.ui.radioButton_3.isChecked():
             sequence_tmp = self.save_validate_query_sequence(self.ui.label_15, self.ui.plainTextEdit_6, 'multi')
-        else:
+        elif self.ui.radioButton_4.isChecked():
             sequence_tmp = self.save_validate_query_sequence(self.ui.label_15, self.ui.plainTextEdit_6, 'csv')
+        elif self.ui.radioButton_6.isChecked():
+            file_directory = QtGui.QFileDialog.getExistingDirectory(self, 'Select a directory')
+            sequence_tmp = None
+            sequence_tools.convert_multi_to_single(file_directory)
+        elif self.ui.radioButton_5.isChecked():
+            file_directory = QtGui.QFileDialog.getExistingDirectory(self, 'Please select a directory')
+            sequence_tmp = None
+            sequence_tools.convert_single_to_multi(file_directory)
 
         if sequence_tmp is not None:
             self.ui.statusbar.showMessage("Starting Conversation | Please wait...")
             if self.ui.radioButton_3.isChecked():
-
                 converted_file = sequence_tools.convert_seq_fomats(sequence_tmp, 'fasta_to_excel')
                 webbrowser.open(converted_file)
             else:
                 converted_file = sequence_tools.convert_seq_fomats(sequence_tmp, 'excel_to_fasta')
                 webbrowser.open(converted_file)
-
+        elif file_directory is not None:
+            webbrowser.open(file_directory)
         self.ui.statusbar.showMessage("Conversation Done")
 
     def start_sequence_converter(self):
@@ -331,8 +339,6 @@ class MyMainWindow(QtGui.QMainWindow):
                 sequence_out = sequence_tools.reverse_complement(sequence_tmp, False)
             elif self.ui.radioButton_7.isChecked():
                 sequence_out = sequence_tools.translate_sequence(sequence_tmp, False)
-            elif self.ui.radioButton_8.isChecked():
-                sequence_out = sequence_tools.translate_sequence(sequence_tmp, True)
             webbrowser.open(sequence_out)
 
         self.ui.statusbar.showMessage("Done")
