@@ -23,7 +23,7 @@ class MyPopup(QtGui.QWidget):
     def __init__(self, images_location):
         QtGui.QWidget.__init__(self)
 
-        self.setWindowTitle('BlasterQt v. 1.0.3')
+        self.setWindowTitle('BlasterQt v. 1.1.1')
         self.images_location = images_location
         label = QtGui.QLabel(self)
         pixmap = QtGui.QPixmap(self.images_location + "about.png")
@@ -45,6 +45,7 @@ class MyMainWindow(QtGui.QMainWindow):
         self.db_location = self.app_location + '/databases/'
         self.images_location = self.app_location + '/images/'
 
+        #rint self.temp_location
         #print self.data_location.split('Local')[0] + '/Local/'
 
         try:
@@ -61,9 +62,11 @@ class MyMainWindow(QtGui.QMainWindow):
             raise
 
         self.ui.setupUi(self)
+        self.change_method_type()
         self.create_connects()
         self.ui.plainTextEdit_2.setFocus()
         self.get_all_dbs()
+
 
         # Hide some widgets (might be used later)
         self.ui.label_21.hide()
@@ -74,18 +77,23 @@ class MyMainWindow(QtGui.QMainWindow):
     def create_connects(self):
         """Connect events."""
 
-        # Tab BLAST
+        # Tab Similarity Search
         self.ui.pushButton.clicked.connect(self.open_file_and_insert_seq)
-        self.ui.comboBox_6.currentIndexChanged['QString'].connect(self.change_blast_type)
-        self.ui.pushButton_3.clicked.connect(self.start_blast)
+        self.ui.comboBox_6.currentIndexChanged['QString'].connect(self.change_method_type)
+        self.ui.pushButton_3.clicked.connect(self.start_similarity_search)
+        #self.ui.plainTextEdit_2.textChanged.connect(self.clear_labels)
+
+        # Tab Align
+        self.ui.pushButton_10.clicked.connect(self.open_file_and_insert_seq)
+        self.ui.pushButton_11.clicked.connect(self.start_alignment)
         
         # Tab Bowtie
-        self.ui.pushButton_2.clicked.connect(self.open_file_and_insert_seq)
-        self.ui.pushButton_4.clicked.connect(self.start_bowtie)
+        #self.ui.pushButton_2.clicked.connect(self.open_file_and_insert_seq)
+        #self.ui.pushButton_4.clicked.connect(self.start_bowtie)
         
         # Tab RC
         self.ui.pushButton_8.clicked.connect(self.open_file_and_insert_seq)
-        self.ui.pushButton_6.clicked.connect(self.start_reverse_complementation)
+        self.ui.pushButton_6.clicked.connect(self.start_sequence_converter)
         
         # Tab Extract
         self.ui.pushButton_5.clicked.connect(self.extract_ids)
@@ -103,6 +111,7 @@ class MyMainWindow(QtGui.QMainWindow):
         self.ui.actionAbout.triggered.connect(self.show_about_message)
         self.ui.actionDocumentation.triggered.connect(self.show_help)
         self.ui.actionClear_all.triggered.connect(self.clear_all_fields)
+
 
 
     def create_folders(self):
@@ -128,17 +137,20 @@ class MyMainWindow(QtGui.QMainWindow):
     def open_file_and_insert_seq(self):
         """Open a file, validate the input and insert the sequence into plaintext and label."""
         # Get widgets
+
         sending_button = self.sender()
         file_format = u"Sequence (*.fasta *.fas *.txt)"
         if str(sending_button.objectName()) == "pushButton":
             widgets = [self.ui.label_6, self.ui.plainTextEdit_2]
-        elif str(sending_button.objectName()) == "pushButton_2":
-            widgets = [self.ui.label_11, self.ui.plainTextEdit_3]
+        #elif str(sending_button.objectName()) == "pushButton_2":
+            #widgets = [self.ui.label_11, self.ui.plainTextEdit_3]
         elif str(sending_button.objectName()) == "pushButton_8":
             widgets = [self.ui.label_3, self.ui.plainTextEdit_5]
         elif str(sending_button.objectName()) == "pushButton_9":
             widgets = [self.ui.label_15, self.ui.plainTextEdit_6]
             file_format = u"Sequence or comma separated values(*.fasta *.fas *.txt *.csv)"
+        elif str(sending_button.objectName()) == "pushButton_10":
+            widgets = [self.ui.label_24, self.ui.plainTextEdit_7]
 
         # Clear plainTextEdit
         widgets[1].clear()
@@ -172,7 +184,6 @@ class MyMainWindow(QtGui.QMainWindow):
     def save_validate_query_sequence(self, lable, plaintext, validate_format):
         """Save and validate sequence and fasta format."""
         # Check whether a file or plain text is used.
-
         if os.path.exists(lable.text()):
             sequence_file_location = lable.text()
             f_query = open(sequence_file_location, 'r')
@@ -214,14 +225,14 @@ class MyMainWindow(QtGui.QMainWindow):
     ### Database stuff
     def get_all_dbs(self):
         """Get all DBs and update Combobox."""
-        self.ui.comboBox_12.clear()
+        #self.ui.comboBox_12.clear()
         db_dict, table_dict = database_tools.get_all_db(str(self.db_location))
         db_type = str(self.ui.comboBox_6.currentText())
     
         for db_data in db_dict.iteritems():
             if db_data[0] == 'BOWTIE':
-                self.ui.comboBox_12.clear()
-                self.ui.comboBox_12.addItems(db_data[1])
+                self.ui.comboBox_7.clear()
+                self.ui.comboBox_7.addItems(db_data[1])
             if db_data[0] == 'FASTA':
                 self.ui.comboBox_14.clear()
                 self.ui.comboBox_14.addItems(db_data[1])
@@ -307,38 +318,75 @@ class MyMainWindow(QtGui.QMainWindow):
 
         self.ui.statusbar.showMessage("Conversation Done")
 
-    def start_reverse_complementation(self):
-        """Reverse complement a sequence."""
+    def start_sequence_converter(self):
+        """Converts a sequence."""
         self.setCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
-        self.ui.statusbar.showMessage("Starting Reverse complement | Please wait...")
+        self.ui.statusbar.showMessage("Starting to convert sequences | Please wait...")
         sequence_tmp = self.save_validate_query_sequence(self.ui.label_3, self.ui.plainTextEdit_5, 'multi')
 
         if sequence_tmp is not None:
             if self.ui.radioButton_2.isChecked():
-                sequence_tmp = sequence_tools.reverse_complement(sequence_tmp, True)
-            else:
-                sequence_tmp = sequence_tools.reverse_complement(sequence_tmp, False)
+                sequence_out = sequence_tools.reverse_complement(sequence_tmp, True)
+            elif self.ui.radioButton.isChecked():
+                sequence_out = sequence_tools.reverse_complement(sequence_tmp, False)
+            elif self.ui.radioButton_7.isChecked():
+                sequence_out = sequence_tools.translate_sequence(sequence_tmp, False)
+            elif self.ui.radioButton_8.isChecked():
+                sequence_out = sequence_tools.translate_sequence(sequence_tmp, True)
+            webbrowser.open(sequence_out)
+
+        self.ui.statusbar.showMessage("Done")
+        self.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
+
+    def start_alignment(self):
+        """Start a ClustalOmega alignment."""
+        self.setCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
+        self.ui.statusbar.showMessage("Starting Alignment | Please wait...")
+        sequence_tmp = self.save_validate_query_sequence(self.ui.label_24, self.ui.plainTextEdit_7, 'multi')
+
+        if sequence_tmp is not None:
+            sequence_tmp = sequence_tools.clustal_omega(sequence_tmp, self.db_location)
             webbrowser.open(sequence_tmp)
 
-        self.ui.statusbar.showMessage("Reverse complement done")
+        self.ui.statusbar.showMessage("Alignment done")
         self.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
         
     def start_bowtie(self):
         """Starts Bowtie alignment."""
-        if self.ui.comboBox_12.currentText() != "":
-            self.sequence_tmp = self.save_validate_query_sequence(self.ui.label_11, self.ui.plainTextEdit_3, 'multi')
-            if self.sequence_tmp is not None:
-                self.setCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
-                self.ui.statusbar.showMessage("Starting BOWTIE | Please wait...")
-                self.searchThread = threads.BowtieThread(str(self.sequence_tmp),
-                                                                 str(self.db_location),
-                                                                 str(self.db_location + self.ui.comboBox_12.currentText()),
-                                                                 str(self.ui.comboBox_11.currentText()))
-                self.connect(self.searchThread, QtCore.SIGNAL("threadDone(QString, QString)"), self.thread_bowtie_done)
-                self.searchThread.start()
+        if self.ui.comboBox_7.currentText() != "":
+            self.sequence_tmp = self.save_validate_query_sequence(self.ui.label_6, self.ui.plainTextEdit_2, 'multi')
+
+            # Check weather sequences are too long
+            if not sequence_tools.validate_bowtie_seq(self.sequence_tmp):
+                if self.sequence_tmp is not None:
+                    self.setCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
+                    self.ui.statusbar.showMessage("Starting BOWTIE | Please wait...")
+                    self.searchThread = threads.BowtieThread(str(self.sequence_tmp),
+                                                                     str(self.db_location),
+                                                                     str(self.db_location + self.ui.comboBox_7.currentText()),
+                                                                     str(self.ui.comboBox_13.currentText()))
+                    self.connect(self.searchThread, QtCore.SIGNAL("threadDone(QString, QString)"), self.thread_bowtie_done)
+                    self.searchThread.start()
+            else:
+                self.show_info_message('Sequence too long (max. 1000 bases)!')
         else:
             self.show_info_message('Please choose a database.')
-        self.ui.label_11.setText('')
+        self.ui.label_6.setText('')
+
+        # if self.ui.comboBox_12.currentText() != "":
+        #     self.sequence_tmp = self.save_validate_query_sequence(self.ui.label_11, self.ui.plainTextEdit_3, 'multi')
+        #     if self.sequence_tmp is not None:
+        #         self.setCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
+        #         self.ui.statusbar.showMessage("Starting BOWTIE | Please wait...")
+        #         self.searchThread = threads.BowtieThread(str(self.sequence_tmp),
+        #                                                          str(self.db_location),
+        #                                                          str(self.db_location + self.ui.comboBox_12.currentText()),
+        #                                                          str(self.ui.comboBox_11.currentText()))
+        #         self.connect(self.searchThread, QtCore.SIGNAL("threadDone(QString, QString)"), self.thread_bowtie_done)
+        #         self.searchThread.start()
+        # else:
+        #     self.show_info_message('Please choose a database.')
+        # self.ui.label_11.setText('')
 
     def thread_bowtie_done(self, info_message, bowtie_file_path):
         """Show message after thread has finished."""
@@ -355,38 +403,42 @@ class MyMainWindow(QtGui.QMainWindow):
                     self.show_info_message('Sorry, no matches found.') 
         self.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
                     
-    def start_blast(self):
+    def start_similarity_search(self):
         """Starts BLAST alignment."""
 
-        settings = [str(self.ui.lineEdit_6.text()),
-                 str(self.ui.lineEdit.text()),
-                 '',
-                 str(self.ui.lineEdit_7.text()),
-                 str(self.ui.comboBox.currentText()),
-                 str(self.ui.lineEdit_8.text()),
-                 str(self.ui.comboBox_9.currentText()).split(' ')[0],
-                 str(self.ui.comboBox_10.currentText()),
-                 str(self.ui.lineEdit_9.text()),
-                 str(self.ui.lineEdit_10.text()),
-                 str(self.ui.checkBox.checkState())]
-
-        if self.ui.comboBox_7.currentText() != "":
-            sequence_tmp = self.save_validate_query_sequence(self.ui.label_6, self.ui.plainTextEdit_2, 'multi')
-            if sequence_tmp is not None:
-                self.ui.statusbar.showMessage("Starting BLAST | Please wait...")
-                self.setCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
-                self.searchThreadBlast = threads.BlastThread(str(sequence_tmp),
-                                                                 str(self.db_location),
-                                                                 str(self.ui.comboBox_7.currentText()),
-                                                                 str(self.ui.comboBox_6.currentText()),
-                                                                 settings)
-                self.connect(self.searchThreadBlast, QtCore.SIGNAL("threadDone(QString, QString)"), self.thread_blast_done)
-                self.searchThreadBlast.start()
+        if str(self.ui.comboBox_6.currentText()) == 'Bowtie':
+            self.start_bowtie()
         else:
-            self.show_info_message('Please choose a database.')
-        self.ui.label_6.setText('')
 
-    def thread_blast_done(self, info_message, blast_file_path):
+            settings = [str(self.ui.lineEdit_6.text()),
+                     str(self.ui.lineEdit.text()),
+                     '',
+                     str(self.ui.lineEdit_7.text()),
+                     str(self.ui.comboBox.currentText()),
+                     str(self.ui.lineEdit_8.text()),
+                     str(self.ui.comboBox_9.currentText()).split(' ')[0],
+                     str(self.ui.comboBox_10.currentText()),
+                     str(self.ui.lineEdit_9.text()),
+                     str(self.ui.lineEdit_10.text()),
+                     str(self.ui.checkBox.checkState())]
+
+            if self.ui.comboBox_7.currentText() != "":
+                sequence_tmp = self.save_validate_query_sequence(self.ui.label_6, self.ui.plainTextEdit_2, 'multi')
+                if sequence_tmp is not None:
+                    self.ui.statusbar.showMessage("Starting BLAST | Please wait...")
+                    self.setCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
+                    self.searchThreadBlast = threads.BlastThread(str(sequence_tmp),
+                                                                     str(self.db_location),
+                                                                     str(self.ui.comboBox_7.currentText()),
+                                                                     str(self.ui.comboBox_6.currentText()),
+                                                                     settings)
+                    self.connect(self.searchThreadBlast, QtCore.SIGNAL("threadDone(QString, QString)"), self.thread_similarity_search_done)
+                    self.searchThreadBlast.start()
+            else:
+                self.show_info_message('Please choose a database.')
+            self.ui.label_6.setText('')
+
+    def thread_similarity_search_done(self, info_message, blast_file_path):
         """Show message after thread has finished."""
         if os.path.exists(blast_file_path):
                 statinfo = os.stat(blast_file_path)
@@ -437,20 +489,29 @@ class MyMainWindow(QtGui.QMainWindow):
         
     #================================================================================================================
     ### BLAST settings
-    def change_blast_type(self):
-        """Sets the BLAST type settings."""
+    def change_method_type(self):
+        """Sets the similarity search method type settings (Blast and Bowtie)."""
 
-        blast_type = self.ui.comboBox_6.currentText()
-        settings = sequence_tools.set_blast_settings(blast_type)
+        method_type = self.ui.comboBox_6.currentText()
+        settings = sequence_tools.set_method_settings(method_type)
         
         # evalue
-        self.ui.lineEdit_6.setText(settings[0])
+        if settings[0] == 'enabled':
+            self.ui.lineEdit_6.setEnabled(False)
+        else:
+            self.ui.lineEdit_6.setText(settings[0])
         # min_length
         #self.ui.lineEdit_2.setText(settings[2])
         # wordsize
-        self.ui.lineEdit_7.setText(settings[3])
+        if settings[3] == 'enabled':
+            self.ui.lineEdit_7.setEnabled(False)
+        else:
+            self.ui.lineEdit_7.setText(settings[3])
         # processor
-        self.ui.lineEdit_8.setText(settings[5])
+        if settings[5] == 'enabled':
+             self.ui.lineEdit_8.setEnabled(False)
+        else:
+            self.ui.lineEdit_8.setText(settings[5])
         # min_percent
         if settings[1] == 'enabled':
             self.ui.lineEdit.setEnabled(False)
@@ -493,12 +554,17 @@ class MyMainWindow(QtGui.QMainWindow):
         else:
             self.ui.checkBox.setEnabled(True)
             self.ui.checkBox.setCheckState(settings[10])
-            
+        # Mismmatches for Bowtie
+        if settings[11] == 'enabled':
+            self.ui.comboBox_13.setEnabled(False)
+        else:
+            self.ui.comboBox_13.setEnabled(True)
+
         self.get_all_dbs()
 
     def clear_all_fields(self):
         """Clears all sequence and ID fields."""
-        fields = [self.ui.plainTextEdit_2, self.ui.plainTextEdit_3, self.ui.plainTextEdit_4,
+        fields = [self.ui.plainTextEdit_2, self.ui.plainTextEdit_4,
                   self.ui.plainTextEdit_5, self.ui.plainTextEdit_6]
 
         for field in fields:

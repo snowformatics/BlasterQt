@@ -1,5 +1,6 @@
 import re
 from Bio.Seq import Seq
+from Bio.Align.Applications import ClustalOmegaCommandline
 from Bio import SeqIO
 import tempfile
 import os
@@ -28,7 +29,6 @@ def validate_single_fasta_seq(sequence):
     else:
         return False
 
-
 def validate_fasta_seq(sequence):
     """Validate sequence in multiple Fasta format."""
     sequence = sequence.replace(" ", "")
@@ -39,6 +39,15 @@ def validate_fasta_seq(sequence):
     else:
         return False
 
+def validate_bowtie_seq(sequence_file):
+    """Validate sequence for Bowtie not longer then 1000 bases."""
+    too_long = False
+    for seq_record in SeqIO.parse(sequence_file, "fasta"):
+        seq = str(seq_record.seq)
+
+        if len(seq) > 1000:
+            too_long = True
+    return too_long
 
 def validate_csv_seq(sequence):
     """Validate sequence in csv format. Only comma or semicolon separated """
@@ -47,6 +56,14 @@ def validate_csv_seq(sequence):
     else:
         return False
 
+def clustal_omega(sequence_file, db_location):
+    """Starts a clustal omega run."""
+    os.chdir(db_location)
+    temp_seq_file = tempfile.mkstemp()
+    out_file = temp_seq_file[1] + '.txt'
+    clustalomega_cline = ClustalOmegaCommandline(infile=sequence_file, outfile=out_file, verbose=True, auto=True)
+    clustalomega_cline()
+    return out_file
 
 def reverse_complement(sequence_file_location, rc):
     """Reverse_complement a sequence."""
@@ -62,6 +79,26 @@ def reverse_complement(sequence_file_location, rc):
             sequence_reverse = seq[::-1]
         f_seq.write('>' + str(id) + '\n')
         f_seq.write(sequence_reverse)
+        f_seq.write('\n')
+        sequence_file_location = temp_seq_file[1] + '.txt'
+    f_fasta.close()
+    f_seq.close()
+    return sequence_file_location
+
+def translate_sequence(sequence_file_location, reverse):
+    """Translates a sequence. If False, translate, if True reverse translate"""
+    f_fasta = open(sequence_file_location, "r")
+    temp_seq_file = tempfile.mkstemp()
+    f_seq = open(temp_seq_file[1] + '.txt', 'w')
+    for seq_record in SeqIO.parse(f_fasta, "fasta"):
+        id = seq_record.id
+        seq = str(seq_record.seq)
+        if not reverse:
+            sequence_translate = str(Seq(seq).translate())
+        else:
+            sequence_translate = str(Seq(seq).translate())[::-1]
+        f_seq.write('>' + str(id) + '\n')
+        f_seq.write(sequence_translate)
         f_seq.write('\n')
         sequence_file_location = temp_seq_file[1] + '.txt'
     f_fasta.close()
@@ -89,20 +126,22 @@ def id_extract(ids, db_location, database_file):
     return temp_seq_file[1] + '.txt'
 
 
-def set_blast_settings(blast_type):
+def set_method_settings(method_type):
     # Settings:
-    # evalue, min_percent, min_length, wordsize, strand, processor, genetic_code, matrix, gap_open, gap_ext, ungapped
+    # evalue, min_percent, min_length, wordsize, strand, processor, genetic_code, matrix, gap_open, gap_ext, ungapped, missmatches
 
-    if blast_type == 'blastn':
-        settings = ['1e-10', '80', '100', '11', 0, '1', 'enabled', 'enabled', '5', '2', 2]
-    elif blast_type == 'blastp':
-        settings = ['1e-10', 'enabled', '100', '3', 'enabled', '1', 'enabled', 4, '9', '1', 'enabled']
-    elif blast_type == 'blastx':
-        settings = ['1e-10', 'enabled', '100', '3', 0, '1', 0, 4, '11', '1', 'enabled']
-    elif blast_type == 'tblastn':
-        settings = ['1e-10', 'enabled', '100', '3', 'enabled', '1', 'enabled', 4, '11', '1', 'enabled']
-    elif blast_type == 'tblastx':
-        settings = ['1e-10', 'enabled', '100', '3', 0, '1', 0, 4, 'enabled', 'enabled', 'enabled']
+    if method_type == 'blastn':
+        settings = ['1e-10', '80', '100', '11', 0, '1', 'enabled', 'enabled', '5', '2', 2, 'enabled']
+    elif method_type == 'blastp':
+        settings = ['1e-10', 'enabled', '100', '3', 'enabled', '1', 'enabled', 4, '9', '1', 'enabled', 'enabled']
+    elif method_type == 'blastx':
+        settings = ['1e-10', 'enabled', '100', '3', 0, '1', 0, 4, '11', '1', 'enabled', 'enabled']
+    elif method_type == 'tblastn':
+        settings = ['1e-10', 'enabled', '100', '3', 'enabled', '1', 'enabled', 4, '11', '1', 'enabled', 'enabled']
+    elif method_type == 'tblastx':
+        settings = ['1e-10', 'enabled', '100', '3', 0, '1', 0, 4, 'enabled', 'enabled', 'enabled', 'enabled']
+    elif method_type == 'Bowtie':
+        settings = ['enabled', 'enabled', 'enabled', 'enabled', 'enabled', 'enabled', 'enabled', 'enabled', 'enabled', 'enabled', 'enabled', '']
 
     return settings
 

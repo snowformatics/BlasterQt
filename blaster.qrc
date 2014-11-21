@@ -1,1 +1,16 @@
-<RCC/>
+<RCC>
+  <qresource prefix="Icons">
+    <file>to_copy/images/Action-db-add-icon2.png</file>
+    <file>to_copy/images/Action-db-remove-icon2.png</file>
+    <file>to_copy/images/about.png</file>
+    <file>to_copy/images/text2.png</file>
+    <file>to_copy/images/text3.png</file>
+    <file>to_copy/images/text4.png</file>
+    <file>to_copy/images/text5.png</file>
+    <file>to_copy/images/text6.png</file>
+    <file>to_copy/images/text7.png</file>
+    <file>to_copy/images/text8.png</file>
+    <file>to_copy/images/text9.png</file>
+    <file>to_copy/images/text2985.png</file>
+  </qresource>
+</RCC>
