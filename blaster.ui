@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>837</width>
-    <height>951</height>
+    <width>862</width>
+    <height>954</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -50,8 +50,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>817</width>
-         <height>829</height>
+         <width>842</width>
+         <height>832</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -59,8 +59,8 @@
          <widget class="QTabWidget" name="tabWidget">
           <property name="minimumSize">
            <size>
-            <width>670</width>
-            <height>800</height>
+            <width>800</width>
+            <height>600</height>
            </size>
           </property>
           <property name="font">
@@ -103,9 +103,9 @@
            <widget class="QWidget" name="layoutWidget">
             <property name="geometry">
              <rect>
-              <x>20</x>
+              <x>50</x>
               <y>20</y>
-              <width>651</width>
+              <width>631</width>
               <height>731</height>
              </rect>
             </property>
@@ -135,7 +135,7 @@
                  <rect>
                   <x>10</x>
                   <y>30</y>
-                  <width>600</width>
+                  <width>601</width>
                   <height>150</height>
                  </rect>
                 </property>
@@ -769,8 +769,8 @@
            <widget class="QGroupBox" name="groupBox_8">
             <property name="geometry">
              <rect>
-              <x>20</x>
-              <y>10</y>
+              <x>50</x>
+              <y>20</y>
               <width>631</width>
               <height>321</height>
              </rect>
@@ -1338,7 +1338,7 @@
           <widget class="QWidget" name="tab_3">
            <attribute name="icon">
             <iconset resource="blaster.qrc">
-             <normaloff>:/Icons/to_copy/images/text3.png</normaloff>:/Icons/to_copy/images/text3.png</iconset>
+             <normaloff>:/Icons/to_copy/images/05.png</normaloff>:/Icons/to_copy/images/05.png</iconset>
            </attribute>
            <attribute name="title">
             <string/>
@@ -1349,8 +1349,8 @@
             </property>
             <property name="geometry">
              <rect>
-              <x>20</x>
-              <y>10</y>
+              <x>50</x>
+              <y>20</y>
               <width>631</width>
               <height>300</height>
              </rect>
@@ -1417,7 +1417,7 @@
            <widget class="QWidget" name="layoutWidget_7">
             <property name="geometry">
              <rect>
-              <x>20</x>
+              <x>60</x>
               <y>200</y>
               <width>371</width>
               <height>101</height>
@@ -1505,7 +1505,7 @@
           <widget class="QWidget" name="tab_4">
            <attribute name="icon">
             <iconset resource="blaster.qrc">
-             <normaloff>:/Icons/to_copy/images/text4.png</normaloff>:/Icons/to_copy/images/text4.png</iconset>
+             <normaloff>:/Icons/to_copy/images/04.png</normaloff>:/Icons/to_copy/images/04.png</iconset>
            </attribute>
            <attribute name="title">
             <string/>
@@ -1513,8 +1513,8 @@
            <widget class="QGroupBox" name="groupBox_5">
             <property name="geometry">
              <rect>
-              <x>20</x>
-              <y>10</y>
+              <x>50</x>
+              <y>20</y>
               <width>631</width>
               <height>341</height>
              </rect>
@@ -1697,7 +1697,7 @@
           <widget class="QWidget" name="tab_6">
            <attribute name="icon">
             <iconset resource="blaster.qrc">
-             <normaloff>:/Icons/to_copy/images/text5.png</normaloff>:/Icons/to_copy/images/text5.png</iconset>
+             <normaloff>:/Icons/to_copy/images/03.png</normaloff>:/Icons/to_copy/images/03.png</iconset>
            </attribute>
            <attribute name="title">
             <string/>
@@ -1705,10 +1705,10 @@
            <widget class="QGroupBox" name="groupBox_6">
             <property name="geometry">
              <rect>
-              <x>20</x>
-              <y>10</y>
+              <x>50</x>
+              <y>20</y>
               <width>631</width>
-              <height>371</height>
+              <height>361</height>
              </rect>
             </property>
             <property name="minimumSize">
@@ -1862,8 +1862,8 @@
            <widget class="QPushButton" name="pushButton_7">
             <property name="geometry">
              <rect>
-              <x>490</x>
-              <y>250</y>
+              <x>520</x>
+              <y>260</y>
               <width>120</width>
               <height>60</height>
              </rect>
@@ -1893,7 +1893,7 @@
           <widget class="QWidget" name="tab_5">
            <attribute name="icon">
             <iconset resource="blaster.qrc">
-             <normaloff>:/Icons/to_copy/images/text7.png</normaloff>:/Icons/to_copy/images/text7.png</iconset>
+             <normaloff>:/Icons/to_copy/images/06.png</normaloff>:/Icons/to_copy/images/06.png</iconset>
            </attribute>
            <attribute name="title">
             <string/>
@@ -1902,7 +1902,7 @@
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>10</y>
+              <y>20</y>
               <width>701</width>
               <height>531</height>
              </rect>
@@ -2013,238 +2013,6 @@
             </widget>
            </widget>
           </widget>
-          <widget class="QWidget" name="tab_2">
-           <attribute name="title">
-            <string/>
-           </attribute>
-           <widget class="QGroupBox" name="groupBox_3">
-            <property name="geometry">
-             <rect>
-              <x>10</x>
-              <y>10</y>
-              <width>681</width>
-              <height>321</height>
-             </rect>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>200</width>
-              <height>300</height>
-             </size>
-            </property>
-            <property name="autoFillBackground">
-             <bool>false</bool>
-            </property>
-            <property name="title">
-             <string>Paste Query Sequence(s) in Plain Text or Fasta format (&lt;1000bp per sequence)</string>
-            </property>
-            <property name="flat">
-             <bool>false</bool>
-            </property>
-            <widget class="QPlainTextEdit" name="plainTextEdit_3">
-             <property name="geometry">
-              <rect>
-               <x>10</x>
-               <y>30</y>
-               <width>600</width>
-               <height>150</height>
-              </rect>
-             </property>
-             <property name="inputMethodHints">
-              <set>Qt::ImhNone</set>
-             </property>
-            </widget>
-            <widget class="QWidget" name="layoutWidget_3">
-             <property name="geometry">
-              <rect>
-               <x>10</x>
-               <y>180</y>
-               <width>601</width>
-               <height>60</height>
-              </rect>
-             </property>
-             <layout class="QGridLayout" name="gridLayout_6">
-              <property name="leftMargin">
-               <number>10</number>
-              </property>
-              <property name="topMargin">
-               <number>5</number>
-              </property>
-              <property name="rightMargin">
-               <number>5</number>
-              </property>
-              <property name="bottomMargin">
-               <number>5</number>
-              </property>
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_11">
-                <property name="text">
-                 <string>No file selected.</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="Line" name="line_4">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="Line" name="line_5">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QPushButton" name="pushButton_2">
-                <property name="maximumSize">
-                 <size>
-                  <width>150</width>
-                  <height>40</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>Open File</string>
-                </property>
-                <property name="icon">
-                 <iconset>
-                  <normaloff>:/Icons/Filesystem-folder-grey-open-icon.png</normaloff>:/Icons/Filesystem-folder-grey-open-icon.png</iconset>
-                </property>
-                <property name="iconSize">
-                 <size>
-                  <width>32</width>
-                  <height>32</height>
-                 </size>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-            <widget class="QWidget" name="layoutWidget_5">
-             <property name="geometry">
-              <rect>
-               <x>10</x>
-               <y>240</y>
-               <width>381</width>
-               <height>71</height>
-              </rect>
-             </property>
-             <layout class="QGridLayout" name="gridLayout_7">
-              <property name="leftMargin">
-               <number>10</number>
-              </property>
-              <property name="topMargin">
-               <number>5</number>
-              </property>
-              <property name="rightMargin">
-               <number>5</number>
-              </property>
-              <property name="bottomMargin">
-               <number>5</number>
-              </property>
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_9">
-                <property name="text">
-                 <string>Choose Database</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="label_10">
-                <property name="text">
-                 <string>Missmatches</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="2">
-               <widget class="QComboBox" name="comboBox_11">
-                <property name="maximumSize">
-                 <size>
-                  <width>50</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <item>
-                 <property name="text">
-                  <string>0</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>1</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>2</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>3</string>
-                 </property>
-                </item>
-               </widget>
-              </item>
-              <item row="2" column="3">
-               <spacer name="verticalSpacer">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>40</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item row="1" column="2" colspan="2">
-               <widget class="QComboBox" name="comboBox_12">
-                <property name="maximumSize">
-                 <size>
-                  <width>300</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-            <widget class="QPushButton" name="pushButton_4">
-             <property name="geometry">
-              <rect>
-               <x>470</x>
-               <y>240</y>
-               <width>120</width>
-               <height>60</height>
-              </rect>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>120</width>
-               <height>60</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>120</width>
-               <height>60</height>
-              </size>
-             </property>
-             <property name="font">
-              <font>
-               <pointsize>12</pointsize>
-              </font>
-             </property>
-             <property name="text">
-              <string>Start</string>
-             </property>
-            </widget>
-           </widget>
-          </widget>
          </widget>
         </item>
        </layout>
@@ -2258,7 +2026,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>837</width>
+     <width>862</width>
      <height>24</height>
     </rect>
    </property>
