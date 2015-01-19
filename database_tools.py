@@ -133,7 +133,7 @@ def delete_databases(db_list, db_location):
     fasta = False
     blastn = False
     blastp = False
-    
+
     os.chdir(db_location)
     for db in db_list:
         try:

@@ -18,12 +18,13 @@ import db_wizard
 
 # pyrcc4 blaster.qrc > blaster_rc.py
 # pyuic4 blaster.ui > blaster_ui.py
+# pyuic4 wizard.ui > wizard_ui.py
 
 class MyPopup(QtGui.QWidget):
     def __init__(self, images_location):
         QtGui.QWidget.__init__(self)
 
-        self.setWindowTitle('BlasterQt v. 1.1.1')
+        self.setWindowTitle('BlasterQt v. 1.1.2')
         self.images_location = images_location
         label = QtGui.QLabel(self)
         pixmap = QtGui.QPixmap(self.images_location + "about.png")
@@ -188,6 +189,7 @@ class MyMainWindow(QtGui.QMainWindow):
     def save_validate_query_sequence(self, lable, plaintext, validate_format):
         """Save and validate sequence and fasta format."""
         # Check whether a file or plain text is used.
+
         if os.path.exists(lable.text()):
             sequence_file_location = lable.text()
             f_query = open(sequence_file_location, 'r')
@@ -197,7 +199,10 @@ class MyMainWindow(QtGui.QMainWindow):
             sequence = str(plaintext.toPlainText())
         else:
             sequence = None
-            self.show_info_message('Please enter a DNA sequence or upload a file!')
+            self.show_info_message('Please enter a nucleic acid sequence or upload a file!')
+
+        # Replace space and new line in sequence
+        sequence = sequence_tools.replace_nc_string(sequence)
 
         # Validate and create temp file
         if sequence is not None:
@@ -223,7 +228,7 @@ class MyMainWindow(QtGui.QMainWindow):
                 sequence_file_location = temp_seq_file[1]
                 return sequence_file_location
             else:
-                self.show_info_message('Please enter a valid DNA sequence!')
+                self.show_info_message('Please enter a valid nucleic acid sequence!')
             
     #================================================================================================================
     ### Database stuff
@@ -248,24 +253,27 @@ class MyMainWindow(QtGui.QMainWindow):
                 if db_type == 'blastp' or db_type == 'blastx':
                     self.ui.comboBox_7.clear()
                     self.ui.comboBox_7.addItems(db_data[1])
-        
+
+
         # Table of databases   
         self.ui.tableWidget.clear()       
         for values in table_dict.values():
             max_rows = len(values)
         self.ui.tableWidget.setRowCount(max_rows)
         self.ui.tableWidget.setColumnCount(4) 
-        
+
         horHeaders = ['Database type', 'Database name', 'Database size (KB)', 'Created'] 
-        for n, key in enumerate(table_dict.keys()): 
+        for n, key in enumerate(table_dict.keys()):
+
             horHeaders.append(key) 
             for m, item in enumerate(table_dict[key]):
+
                 newitem = QtGui.QTableWidgetItem(str(item)) 
                 if n == 0:
                     newitem.setCheckState(QtCore.Qt.Unchecked)
                 self.ui.tableWidget.setItem(m, n, newitem) 
         self.ui.tableWidget.setHorizontalHeaderLabels(horHeaders)
-        self.ui.tableWidget.sortItems(0)    
+        #self.ui.tableWidget.sortItems(0)
         
     def delete_dbs(self):
         """Get all selected DBs for deleting."""

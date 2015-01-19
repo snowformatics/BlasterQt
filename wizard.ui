@@ -46,6 +46,9 @@
        <property name="text">
         <string>BLAST DNA Database</string>
        </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
      <item>
@@ -57,6 +60,9 @@
        </property>
        <property name="text">
         <string>BLAST Protein Database</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -70,6 +76,9 @@
        <property name="text">
         <string>BOWTIE Database</string>
        </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
      <item>
@@ -81,6 +90,9 @@
        </property>
        <property name="text">
         <string>Fasta Database</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
        </property>
       </widget>
      </item>

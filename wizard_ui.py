@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'wizard.ui'
 #
-# Created: Thu Feb 13 14:26:17 2014
-#      by: PyQt4 UI code generator 4.10.3
+# Created: Mon Jan 19 11:35:28 2015
+#      by: PyQt4 UI code generator 4.11.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -45,24 +45,28 @@ class Ui_wizard(object):
         font = QtGui.QFont()
         font.setPointSize(12)
         self.checkBox.setFont(font)
+        self.checkBox.setChecked(True)
         self.checkBox.setObjectName(_fromUtf8("checkBox"))
         self.verticalLayout.addWidget(self.checkBox)
         self.checkBox_2 = QtGui.QCheckBox(self.layoutWidget)
         font = QtGui.QFont()
         font.setPointSize(12)
         self.checkBox_2.setFont(font)
+        self.checkBox_2.setChecked(True)
         self.checkBox_2.setObjectName(_fromUtf8("checkBox_2"))
         self.verticalLayout.addWidget(self.checkBox_2)
         self.checkBox_3 = QtGui.QCheckBox(self.layoutWidget)
         font = QtGui.QFont()
         font.setPointSize(12)
         self.checkBox_3.setFont(font)
+        self.checkBox_3.setChecked(True)
         self.checkBox_3.setObjectName(_fromUtf8("checkBox_3"))
         self.verticalLayout.addWidget(self.checkBox_3)
         self.checkBox_4 = QtGui.QCheckBox(self.layoutWidget)
         font = QtGui.QFont()
         font.setPointSize(12)
         self.checkBox_4.setFont(font)
+        self.checkBox_4.setChecked(True)
         self.checkBox_4.setObjectName(_fromUtf8("checkBox_4"))
         self.verticalLayout.addWidget(self.checkBox_4)
         wizard.addPage(self.wizardPage1)
@@ -154,13 +158,3 @@ class Ui_wizard(object):
         self.label_2.setText(_translate("wizard", "Progress:", None))
 
 import blaster_rc
-
-if __name__ == "__main__":
-    import sys
-    app = QtGui.QApplication(sys.argv)
-    wizard = QtGui.QWizard()
-    ui = Ui_wizard()
-    ui.setupUi(wizard)
-    wizard.show()
-    sys.exit(app.exec_())
-

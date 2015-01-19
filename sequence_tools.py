@@ -222,3 +222,17 @@ def save_seq_file(seq_id, sequence, directory):
     f_fasta = open(directory + '/'+ seq_id + '.fasta', 'w')
     f_fasta.write(str(sequence))
     f_fasta.close()
+
+def replace_nc_string(sequence):
+    """Replace spaes and new line in sequences."""
+    sequence = sequence.replace(' ', '')
+    x = re.findall(">.*\n", sequence)
+    for title in x:
+        sequence = re.sub(title, title.strip()+'$', sequence)
+
+    sequence = sequence.replace('\n', '')
+    sequence = sequence.replace('>', '\n>')
+    sequence = sequence.replace('$', '\n')
+    if sequence.startswith('\n'):
+        sequence = sequence.lstrip()
+    return sequence

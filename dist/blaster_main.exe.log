@@ -1,1 +1,0 @@
-\\filer\nutzer\lueck\My Data\Python Projects\Software Projects\BlasterQt\dist\library.zip\Bio\Seq.py:1976: BiopythonWarning: Partial codon, len(sequence) not a multiple of three. Explicitly trim the sequence or add trailing N before translation. This may become an error in future.

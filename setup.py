@@ -3,7 +3,8 @@ import py2exe
 # cd D:\Users\lueck\Google Drive\Python\Software projects\BlasterQt
 # python setup.py py2exe
 
-setup(windows=[{"script": "blaster_main.py"}],
+setup(windows=[{"script": "blaster_main.py",
+                'uac_info': "requireAdministrator"}],
 
       options={"py2exe":
                 {"includes": ['sip', 'decimal', 'PyQt4.QtSql', "PyQt4.QtCore", "PyQt4.QtGui", "PyQt4.QtNetwork"],
