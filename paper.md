@@ -1,22 +1,20 @@
 ---
-title: 'Fidgit: An ungodly union of GitHub and figshare'
+title: 'Blaster'
 tags:
-  - example
-  - tags
-  - for the paper
+  - sequence
+  - blast
+  - bowtie
 authors:
- - name: Arfon M Smith
-   orcid: 0000-0003-0872-7098
-   affiliation: "1, 2"
- - name: Mickey Mouse
-   orcid: 0000-0003-0872-7098
-   affiliation: 2
+ - name: Stefanie Lueck
+   orcid: 0000-0003-0536-835X
+   affiliation: 1
+ - name: Dimitar Douchkov
+   orcid: 0000-0001-6603-4930
+   affiliation: 1
 affiliations:
- - name: Space Telescope Science Insitute
+ - name: Leibniz-Institut für Pflanzengenetik und Kulturpflanzenforschung Gatersleben: Stadt Seeland, Sachsen-Anhalt, DE
    index: 1
- - name: Disney Inc.
-   index: 2
-date: 14 February 2016
+date: 30 March 2019
 bibliography: paper.bib
 ---
 
