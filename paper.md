@@ -9,8 +9,8 @@ authors:
    orcid: 0000-0003-0536-835X
    affiliation: 1
  - name: Dimitar Douchkov
-   orcid: 0000-0003-0872-7098
-   affiliation: 2
+   orcid: 0000-0001-6603-4930
+   affiliation: 1
 affiliations:
  - name: Leibniz-Institut für Pflanzengenetik und Kulturpflanzenforschung Gatersleben, Stadt Seeland, Sachsen-Anhalt
    index: 1
