@@ -7,8 +7,8 @@ tags:
 authors:
  - name: Stefanie Lueck
    orcid: 0000-0003-0536-835X
-   affiliation: "1, 2"
- - name: Mickey Mouse
+   affiliation: 1
+ - name: Dimitar Douchkov
    orcid: 0000-0003-0872-7098
    affiliation: 2
 affiliations:
