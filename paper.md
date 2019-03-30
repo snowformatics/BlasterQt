@@ -14,8 +14,6 @@ authors:
 affiliations:
  - name: Space Telescope Science Insitute
    index: 1
- - name: Disney Inc.
-   index: 2
 date: 30 March 2019
 bibliography: paper.bib
 ---
