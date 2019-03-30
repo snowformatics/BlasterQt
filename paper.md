@@ -12,7 +12,7 @@ authors:
    orcid: 0000-0003-0872-7098
    affiliation: 2
 affiliations:
- - name: Leibniz-Institut für Pflanzengenetik und Kulturpflanzenforschung Gatersleben: Stadt Seeland, Sachsen-Anhalt
+ - name: Leibniz-Institut für Pflanzengenetik und Kulturpflanzenforschung Gatersleben, Stadt Seeland, Sachsen-Anhalt
    index: 1
 date: 30 March 2019
 bibliography: paper.bib
