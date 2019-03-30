@@ -5,8 +5,8 @@ tags:
   - blast
   - bowtie
 authors:
- - name: Arfon M Smith
-   orcid: 0000-0003-0872-7098
+ - name: Stefanie Lueck
+   orcid: 0000-0003-0536-835X
    affiliation: "1, 2"
  - name: Mickey Mouse
    orcid: 0000-0003-0872-7098
