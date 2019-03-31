@@ -37,6 +37,22 @@ Common sequence alignment tools such as Basic Local Alignment Search Tool (BLAST
 “Blaster” is available as Microsoft Windows installer and the open source code is accessible on GitHub with xx license.
 
 
+# Design and Implementation
+
+The Blaster software was implemented using Python 2.7. and PyQt4 was used for the graphical user interface development. Blast 2.2 (1), Bowtie (2), clustalw2 (3) are required command line tools which will be automatically installed with the Blaster software.
+
+The executable was created with py2exe-0.6.9. and InnoSetup 5 and runs on Microsoft Windows operation system XP, 7 and 10.
+
+A help file is available under http://labtools.ipk-gatersleben.de/help/BlasterQt/BlasterQt.html
+
+# Conclusions
+
+We developed a Python based desktop application called Blaster (about 200 download per year) with a user-friendly GUI to provide an easy access to the most common sequence alignment tools such as Blast and Bowtie with allowing the use of a custom database. With providing a Windows installer we overcome the hurdle for complicated system setup which requeieres to isntall a Python intepereter, Blast, clustalw and bowtie command line tools. The results are provided as text files which can be easily viwed and analyzed by standard software packages e.g. Excel. 
+
+# Acknowledgements
+
+Patrick
+
 This is a proof of concept integration between a GitHub [@GitHub] repo and figshare [@figshare] in an effort to get a DOI for a GitHub repository. When a repository is tagged for release on GitHub, Fidgit [@Fidgit] will import the release into figshare thus giving the code bundle a DOI. In a somewhat meta fashion, Fidgit is publishing itself to figshare with DOI 'https://doi.org/10.6084/m9.figshare.828487' [@figshare_archive].
 
 -![Fidgit deposited in figshare.](figshare_article.png)
