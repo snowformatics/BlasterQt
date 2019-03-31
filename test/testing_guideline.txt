@@ -4,6 +4,7 @@ Note: All test files are provided in the folder https://github.com/snowformatics
 
 Following tests were successfully tested under Windows 10 with BlasterQt Version 1.2.4
 
+0. Download Blaster https://sourceforge.net/projects/blasterqt/files/BlasterQtv1.2.4.exe/download
 1. Install Blaster with the Windows Installer and run the software.
 2. Choose “Database” tab
 3. Click “Create new database”
