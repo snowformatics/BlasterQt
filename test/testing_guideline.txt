@@ -1,0 +1,32 @@
+Testing Blaster
+
+Note: All test files are provided in the folder https://github.com/snowformatics/BlasterQt/tree/master/test 
+
+Following tests were successfully tested under Windows 10 with BlasterQt Version 1.2.4
+
+1. Install Blaster with the Windows Installer and run the software.
+2. Choose “Database” tab
+3. Click “Create new database”
+4. Choose the “test_database.txt” file as source.
+
+5. Sequence similarity test:
+    a. Paste the sequence of the “test_blastn.txt” file inside the text field (alternative load the file)
+    b. Keep default parameters for Blastn, choose the test database you created above and  and press “Search”
+    c. Sequence 2 should be found with 100% match. Compare the output with output_blast.txt
+
+6. Multiple alignment test:
+    a. Paste the sequence of the “test_multiple_alignment.txt” file inside the text field (alternative load the file) and press “Align”
+    b. Compare the output with output_multiple_alignment.txt
+
+7. Fasta Extractor test:
+    a. Choose the test database you created above 
+    b. Paste “Sequence3” in the text field
+    c. Compare the output with output_fasta_extractor.txt
+
+8. Sequence converter test:
+    a. Paste the sequence of the “test_blastn.txt” file inside the text field (alternative load the file)
+    b. Choose “Reverse complement” and press Start
+    c. Compare the output with output_sequence_converter.txt
+
+9. Format converter test
+    a. Paste the sequence of the “test_blastn.txt” file inside the text field (alternative load the file)
