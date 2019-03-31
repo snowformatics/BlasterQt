@@ -34,7 +34,7 @@ Common sequence alignment tools such as Basic Local Alignment Search Tool (BLAST
 
 - Local  sequence database management
 
-“Blaster” is available as Microsoft Windows installer and the open source code is accessible on GitHub with xx license.
+“Blaster” is available as Microsoft Windows installer and the open source code is accessible on GitHub with MIT License.
 
 
 # Design and Implementation
