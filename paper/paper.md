@@ -51,7 +51,7 @@ We developed a Python based desktop application called Blaster (about 200 downlo
 
 # Acknowledgements
 
-Patrick
+We would like to offer special thanks to Dr. habil Patrick Schweizer, who, although no longer with us, continues to inspire by his example and dedication as an outstanding group leader.
 
 -![Fidgit deposited in figshare.](figshare_article.png)
 
