@@ -47,7 +47,7 @@ A help file is available under http://labtools.ipk-gatersleben.de/help/BlasterQt
 
 # Conclusions
 
-We developed a Python based desktop application called Blaster with a user-friendly GUI to provide an easy access to the most common sequence alignment tools such as Blast and Bowtie with allowing the use of a custom database. With providing a Windows installer we overcome the hurdle for complicated system setup which requites to install a Python interpreter, Blast, clustalw and bowtie command line tools. The results are provided as text files which can be easily viewed and analyzed by standard software packages e.g. Microsoft Excel.
+We developed a Python based desktop application called Blaster (about 200 downloads per year) with a user-friendly GUI to provide an easy access to the most common sequence alignment tools such as Blast and Bowtie with allowing the use of a custom database. With providing a Windows installer we overcome the hurdle for complicated system setup which requites to install a Python interpreter, Blast, clustalw and bowtie command line tools. The results are provided as text files which can be easily viewed and analyzed by standard software packages e.g. Microsoft Excel.
 
 # Acknowledgements
 
