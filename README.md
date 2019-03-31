@@ -14,6 +14,7 @@ Common sequence alignment tools such as Basic Local Alignment Search Tool (BLAST
 
 ·        Local sequence database management
 
+“Blaster” is available as Microsoft Windows installer and can be downloaded at https://sourceforge.net/projects/blasterqt/files/BlasterQtv1.2.4.exe/download
 
 # Bug reports and reviewer tests
 
