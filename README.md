@@ -23,6 +23,7 @@ We strongly recommend to install "Blaster" with the Microsoft Windows installer 
 For manual installation, the following dependencies are required:
 
 - Python 2.7 (https://www.python.org/download/releases/2.7/)
+- Biopython (pip install biopython)
 - PyQt4 (https://sourceforge.net/projects/pyqt/)
 - Blast+ (ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.19/)
 - Bowtie (https://sourceforge.net/projects/bowtie-bio/)
