@@ -1,7 +1,9 @@
 ---
 title: 'Blaster'
 tags:
-  - sequence
+  - sequences
+  - fasta
+  - clustalw
   - blast
   - bowtie
 authors:
@@ -54,7 +56,6 @@ We have developed a Python based desktop application called “Blaster” with a
 
 # Acknowledgements
 
-We would like to offer special thanks to Dr. habil Patrick Schweizer, who, although no longer with us, continues to inspire by his example and dedication as an outstanding group leader.
 
 -![Fidgit deposited in figshare.](figshare_article.png)
 
