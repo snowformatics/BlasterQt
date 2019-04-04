@@ -54,7 +54,9 @@ We have developed a Python based desktop application called “Blaster” with a
 
 # Links
 Github repository: https://github.com/snowformatics/BlasterQt
+
 Windows Installer: https://sourceforge.net/projects/blasterqt/files/BlasterQtv1.2.4.exe/download
+
 
 # Acknowledgements
 
