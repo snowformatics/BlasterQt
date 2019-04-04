@@ -6,6 +6,7 @@ tags:
   - clustalw
   - blast
   - bowtie
+  - bioinformatic
 authors:
  - name: Stefanie Lueck
    orcid: 0000-0003-0536-835X
