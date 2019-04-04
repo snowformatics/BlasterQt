@@ -40,8 +40,6 @@ In contrast to other similar tools, designed to work with online databases, “B
 
 “Blaster” provides easy installation, it is free (MIT License) and with an open source code.
 
-
-
 # Design and Implementation
 
 The “Blaster” software was implemented with Python 2.7 and the GUI was build with PyQt4. Blast 2.2 (Altschul et al. 1990), Bowtie (Langmead et al. 2009), clustalw2 (Thompson et al. 1994) are required command line sequence alignment tools which will be automatically installed with the “Blaster” software.
@@ -53,6 +51,10 @@ A help file is available under http://labtools.ipk-gatersleben.de/help/BlasterQt
 # Conclusions
 
 We have developed a Python based desktop application called “Blaster” with a user-friendly GUI to provide an easy access to the most common sequence alignment tools, such as Blast and Bowtie, for sequence analysis in local custom sequence databases. The easy one-click installer for Microsoft Windows maximally simplifies the complex system setup that includes installation of a Python interpreter, Blast, clustalw2 and Bowtie command line tools. The plain text file format of the results allows an easy import to other software packages for further analysis.
+
+# Links
+Github repository: https://github.com/snowformatics/BlasterQt
+Windows Installer: https://sourceforge.net/projects/blasterqt/files/BlasterQtv1.2.4.exe/download
 
 # Acknowledgements
 
