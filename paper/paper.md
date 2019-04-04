@@ -34,20 +34,23 @@ Common sequence alignment tools such as Basic Local Alignment Search Tool (BLAST
 
 - Local  sequence database management
 
-“Blaster” is available as Microsoft Windows installer and the open source code is accessible on GitHub with MIT License.
+In contrast to other similar tools, designed to work with online databases, “Blaster” is primarily aimed to be used with local custom sequence databases. This gives the opportunity to the users to use their own specific sequence databases, as well as to protect the privacy of the their data.
+
+“Blaster” provides easy installation, it is free (MIT License) and with an open source code.
+
 
 
 # Design and Implementation
 
-The Blaster software was implemented using Python 2.7. and PyQt4 was used for the graphical user interface development. Blast 2.2 (Altschul, S.F. et al. 1990), Bowtie (Langmead B et al.), clustalw2 (Thompson JD1 et al. 1994) are required command line sequence alignment tools which will be automatically installed with the Blaster software.
+The “Blaster” software was implemented with Python 2.7 and the GUI was build with PyQt4. Blast 2.2 (Altschul et al. 1990), Bowtie (Langmead et al. 2009), clustalw2 (Thompson et al. 1994) are required command line sequence alignment tools which will be automatically installed with the “Blaster” software.
 
-The executable was created with py2exe-0.6.9. and InnoSetup 5 was used to obtain a Windows installer. Blaster was successfully tested  on Microsoft Windows operation systems XP, 7 and 10.
+The executable file was created with py2exe-0.6.9. The Microsoft Windows installer was created with InnoSetup 5. “Blaster” was successfully tested for functioning on the Microsoft Windows operating systems XP, 7 and 10.
 
 A help file is available under http://labtools.ipk-gatersleben.de/help/BlasterQt/BlasterQt.html
 
 # Conclusions
 
-We developed a Python based desktop application called Blaster (about 200 downloads per year) with a user-friendly GUI to provide an easy access to the most common sequence alignment tools such as Blast and Bowtie with allowing the use of a custom database. With providing a Windows installer we overcome the hurdle for complicated system setup which requires to install the Python interpreter, Blast, clustalw2 and Bowtie command line tools. The results are provided as text files which can be easily shared and analyzed by standard software packages like Microsoft Excel.
+We have developed a Python based desktop application called “Blaster” with a user-friendly GUI to provide an easy access to the most common sequence alignment tools, such as Blast and Bowtie, for sequence analysis in local custom sequence databases. The easy one-click installer for Microsoft Windows maximally simplifies the complex system setup that includes installation of a Python interpreter, Blast, clustalw2 and Bowtie command line tools. The plain text file format of the results allows an easy import to other software packages for further analysis.
 
 # Acknowledgements
 
