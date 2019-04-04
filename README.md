@@ -14,7 +14,20 @@ Common sequence alignment tools such as Basic Local Alignment Search Tool (BLAST
 
 ·        Local sequence database management
 
-“Blaster” is available as Microsoft Windows installer and can be downloaded at https://sourceforge.net/projects/blasterqt/files/BlasterQtv1.2.4.exe/download
+
+
+# Installation
+
+We strongly recommend to install "Blaster" with the Microsoft Windows installer which can be downloaded at sourceforge  https://sourceforge.net/projects/blasterqt/files/BlasterQtv1.2.4.exe/download.
+
+For manual installation, the following dependencies are required:
+
+- Python 2.7 (https://www.python.org/download/releases/2.7/)
+- PyQt4 (https://sourceforge.net/projects/pyqt/)
+- Blast+ (ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.19/)
+- Bowtie (https://sourceforge.net/projects/bowtie-bio/)
+- clustalw2 (http://www.clustal.org/download/current/)
+
 
 # Bug reports and reviewer tests
 
