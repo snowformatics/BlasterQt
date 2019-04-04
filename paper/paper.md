@@ -57,6 +57,6 @@ We have developed a Python based desktop application called “Blaster” with a
 # Acknowledgements
 
 
--![Fidgit deposited in figshare.](figshare_article.png)
+-![https://figshare.com/articles/Screenshot_Blaster/7952582](screenshot_blaster.png)
 
 # References
