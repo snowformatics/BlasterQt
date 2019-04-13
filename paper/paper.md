@@ -1,5 +1,5 @@
 ---
-title: 'Blaster'
+title: '“Blaster” – a graphical user interface for common sequences analysis tools'
 tags:
   - sequences
   - fasta
