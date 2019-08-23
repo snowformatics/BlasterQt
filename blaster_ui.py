@@ -687,6 +687,7 @@ class Ui_MainWindow(object):
         self.commandLinkButton.setObjectName(_fromUtf8("commandLinkButton"))
         self.gridLayout_3.addWidget(self.commandLinkButton, 2, 0, 1, 1)
         self.tableWidget = QtGui.QTableWidget(self.gridLayoutWidget_3)
+        self.tableWidget.setEditTriggers(QtGui.QAbstractItemView.NoEditTriggers)
         self.tableWidget.setObjectName(_fromUtf8("tableWidget"))
         self.tableWidget.setColumnCount(4)
         self.tableWidget.setRowCount(0)
