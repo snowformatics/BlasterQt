@@ -37,6 +37,7 @@ class DBWizard(QtGui.QWizard):
             file_path = self.ui_wizard.label_5.text()
             db_name = self.ui_wizard.lineEdit.text()
             db_name = db_name.replace(' ', '_')
+            db_name = db_name.replace('.', '_')
             db_not_ok = []
 
             if blastn_db == 2:

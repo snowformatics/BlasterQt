@@ -103,7 +103,7 @@ class Ui_wizard(object):
         self.verticalLayout_4.setObjectName(_fromUtf8("verticalLayout_4"))
         self.label_6 = QtGui.QLabel(self.layoutWidget2)
         font = QtGui.QFont()
-        font.setPointSize(12)
+        font.setPointSize(10)
         self.label_6.setFont(font)
         self.label_6.setObjectName(_fromUtf8("label_6"))
         self.verticalLayout_4.addWidget(self.label_6)
@@ -154,7 +154,7 @@ class Ui_wizard(object):
         self.checkBox_4.setText(_translate("wizard", "Fasta Database", None))
         self.commandLinkButton_5.setText(_translate("wizard", "Choose source file", None))
         self.label_5.setText(_translate("wizard", "No source selected", None))
-        self.label_6.setText(_translate("wizard", "Enter a database name:", None))
+        self.label_6.setText(_translate("wizard", "Enter a database name \n(Spaces and interpuncts will be replaced with '_')", None))
         self.label_2.setText(_translate("wizard", "Progress:", None))
 
 import blaster_rc

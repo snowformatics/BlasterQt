@@ -19,7 +19,7 @@
      <rect>
       <x>20</x>
       <y>20</y>
-      <width>401</width>
+      <width>499</width>
       <height>181</height>
      </rect>
     </property>
@@ -125,7 +125,7 @@
         <string>Choose source file</string>
        </property>
        <property name="icon">
-        <iconset resource="../Resources/blaster.qrc">
+        <iconset>
          <normaloff>:/Icons/Filesystem-folder-grey-open-icon.png</normaloff>:/Icons/Filesystem-folder-grey-open-icon.png</iconset>
        </property>
        <property name="iconSize">
@@ -191,6 +191,24 @@
      </item>
     </layout>
    </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>310</y>
+      <width>421</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Note: Spaces and interpuncts will be replaced with '_' </string>
+    </property>
+   </widget>
   </widget>
   <widget class="QWizardPage" name="wizardPage2">
    <widget class="QWidget" name="layoutWidget">
@@ -238,8 +256,6 @@
    </widget>
   </widget>
  </widget>
- <resources>
-  <include location="../Resources/blaster.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
