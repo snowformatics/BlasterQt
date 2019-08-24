@@ -29,6 +29,10 @@ For manual installation, the following dependencies are required:
 - Bowtie (https://sourceforge.net/projects/bowtie-bio/)
 - clustalw2 (http://www.clustal.org/download/current/)
 
+# Manual
+
+labtools.ipk-gatersleben.de/help/BlasterQt/BlasterQt.pdf
+
 
 # Bug reports and tests
 
