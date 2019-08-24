@@ -31,7 +31,7 @@ For manual installation, the following dependencies are required:
 
 # Manual
 
-(https://www.labtools.ipk-gatersleben.de/help/BlasterQt/BlasterQt.pdf
+http://labtools.ipk-gatersleben.de/help/BlasterQt/BlasterQt.html
 
 
 # Bug reports and tests
