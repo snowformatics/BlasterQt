@@ -47,7 +47,7 @@ The “Blaster” software was implemented with Python 2.7 and the GUI was build
 
 The executable file was created with py2exe-0.6.9. The Microsoft Windows installer was created with InnoSetup 5. “Blaster” was successfully tested for functioning on the Microsoft Windows operating systems XP, 7 and 10.
 
-A help file is available under http://labtools.ipk-gatersleben.de/help/BlasterQt/BlasterQt.html
+A help file is available under http://labtools.ipk-gatersleben.de/help/BlasterQt/BlasterQt.pdf
 
 # Conclusions
 
@@ -56,7 +56,7 @@ We have developed a Python based desktop application called “Blaster” with a
 # Links
 Github repository: https://github.com/snowformatics/BlasterQt
 
-Windows Installer: https://sourceforge.net/projects/blasterqt/files/BlasterQtv1.2.4.exe/download
+Windows Installer: https://sourceforge.net/projects/blasterqt/files/BlasterQtv1.4.exe/download
 
 
 # Acknowledgements
