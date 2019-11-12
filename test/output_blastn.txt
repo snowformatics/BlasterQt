@@ -3,5 +3,5 @@
 # Database: test
 # Fields: query id, subject id, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
 # 1 hits found
-My_sequence	Sequence2	100.00	54	0	0	1	54	41	94	8e-027	  104
+My_sequence	Sequence2	100.00	1653	0	0	1	1653	1	1653	0.0	 3178
 # BLAST processed 1 queries
