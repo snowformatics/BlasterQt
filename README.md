@@ -18,7 +18,7 @@ Common sequence alignment tools such as Basic Local Alignment Search Tool (BLAST
 
 # Installation
 
-We strongly recommend to install "Blaster" with the Microsoft Windows installer which can be downloaded at sourceforge  https://sourceforge.net/projects/blasterqt/files/BlasterQtv1.2.4.exe/download.
+We strongly recommend to install "Blaster" with the Microsoft Windows installer which can be downloaded here http://dx.doi.org/10.5447/IPK/2019/23.
 
 For manual installation, the following dependencies are required:
 
