@@ -56,13 +56,10 @@ Blaster v. 1.3
 
 Blaster v. 1.4
 
-Updated documentation
-
-Bug fixes
-
-Added ".fa" extension 
-
-Updated test material
+- Updated documentation
+- Bug fixes
+- Added ".fa" extension 
+- Updated test material
 
 
 
