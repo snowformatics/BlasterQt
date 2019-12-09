@@ -43,7 +43,7 @@ In contrast to other similar tools, designed to work with online databases, “B
 
 # Design and Implementation
 
-The “Blaster” software was implemented with Python 2.7 and the GUI was build with PyQt4. Blast 2.2 (Altschul et al. 1990), Bowtie (Langmead et al. 2009), clustalw2 (Thompson et al. 1994) are required command line sequence alignment tools which will be automatically installed with the “Blaster” software.
+The “Blaster” software was implemented with Python 2.7 and the GUI was build with PyQt4. Blast 2.2 @ALTSCHUL1990403, Bowtie (Langmead et al. 2009), clustalw2 (Thompson et al. 1994) are required command line sequence alignment tools which will be automatically installed with the “Blaster” software.
 
 The executable file was created with py2exe-0.6.9. The Microsoft Windows installer was created with InnoSetup 5. “Blaster” was successfully tested for functioning on the Microsoft Windows operating systems XP, 7 and 10.
 
