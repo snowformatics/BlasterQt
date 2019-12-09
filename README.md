@@ -43,3 +43,16 @@ For testing the general functionality of the software, follow the instructions i
 # Contributions
 
 All kind of contributions (documentation, testing, adding more features, suggestions...) are highly appreciated. 
+
+# History
+Blaster v. 1.3
+Removed FASTQ conversation feature
+Removed editing database names
+Updated documentation
+Bug fixes
+"." or spaces in database names will be replaced with "_" (see https://github.com/snowformatics/BlasterQt/issues/9)
+
+Blaster v. 1.4
+
+
+
