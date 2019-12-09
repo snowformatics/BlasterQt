@@ -33,7 +33,7 @@ Common sequence alignment tools such as Basic Local Alignment Search Tool (BLAST
 
 - Sequence converter (reverse complement, reverse, translate)
 
-- Sequence format conversions (FASTA, Multiple FASTA, FASTQ, CSV)
+- Sequence format conversions (FASTA, Multiple FASTA, CSV)
 
 - Local  sequence database management
 
@@ -56,7 +56,7 @@ We have developed a Python based desktop application called “Blaster” with a
 # Links
 Github repository: https://github.com/snowformatics/BlasterQt
 
-Windows Installer: https://sourceforge.net/projects/blasterqt/files/BlasterQtv1.4.exe/download
+Windows Installer: http://dx.doi.org/10.5447/IPK/2019/23
 
 
 # Acknowledgements
