@@ -1,5 +1,5 @@
 ---
-title: '“Blaster” – a graphical user interface for common sequences analysis tools'
+title: '“Blaster” – a graphical user interface for common sequence analysis tools'
 tags:
   - sequences
   - fasta
@@ -7,6 +7,8 @@ tags:
   - blast
   - bowtie
   - bioinformatic
+  - GUI
+  - Windows
 authors:
  - name: Stefanie Lueck
    orcid: 0000-0003-0536-835X
