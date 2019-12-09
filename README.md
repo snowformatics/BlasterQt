@@ -47,15 +47,11 @@ All kind of contributions (documentation, testing, adding more features, suggest
 # History
 Blaster v. 1.3
 
-Removed FASTQ conversation feature
-
-Removed editing database names
-
-Updated documentation
-
-Bug fixes
-
-"." or spaces in database names will be replaced with "_" (see https://github.com/snowformatics/BlasterQt/issues/9)
+- Removed FASTQ conversation feature
+- Removed editing database names
+- Updated documentation
+- Bug fixes
+- "." or spaces in database names will be replaced with "_" (see https://github.com/snowformatics/BlasterQt/issues/9)
 
 
 Blaster v. 1.4
