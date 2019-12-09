@@ -1,4 +1,4 @@
-# BlasterQt
+# BlasterQtv1.4
 
 Common sequence alignment tools such as Basic Local Alignment Search Tool (BLAST) or Bowtie short sequence aligner are used by scientist on a daily basis. Often those programs are with command line interface which makes them very practical for developers and advance users but hard for researchers who are more familiar with a graphical user interface. Here we present a tool called “Blaster”, which offers simple and intuitive graphical interface for performing some of the most common tasks in nucleotide and protein sequence work. The software is provided with the following modules:
 
