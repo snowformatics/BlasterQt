@@ -36,7 +36,7 @@ http://labtools.ipk-gatersleben.de/help/BlasterQt/BlasterQt.pdf
 
 # Bug reports and tests
 
-Bug reports can be either sent by Email (lueck@ipk-gatersleben.de) or reported as issue on Github (prefered). If possible and not confidential, upload or link the problematic database or sequence files. 
+Bug reports can be either sent by Email (lueckATipk-gatersleben.de) or reported as issue on Github (prefered). If possible and not confidential, upload or link the problematic database or sequence files. 
 
 For testing the general functionality of the software, follow the instructions in testing_guideline.txt file in folder test. All required testing files can be found in the same folder.
 
