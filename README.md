@@ -60,6 +60,6 @@ Blaster v. 1.4
 - Bug fixes
 - Added ".fa" extension 
 - Updated test material
-
+- Create DOI for windows installer
 
 
